@@ -11,9 +11,6 @@ class Model {
 
   public function __construct(){
     
-    $this->laZona = $_SESSION["IDZONA"];
-    
-    
     try {
       $this->conectarBaseDeDatos = new PDO('mysql:host='.HOST.';dbname='.BASE.';charset=utf8',USER,PASS); 
       // no hubo error      
