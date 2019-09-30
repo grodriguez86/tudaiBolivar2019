@@ -1,6 +1,4 @@
-  <?php
-
-//  require_once 'Controller/EjemploController.php';
+<?php
 require_once 'view/InicioView.php';
 
   define('ACTION',0);
