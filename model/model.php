@@ -1,5 +1,5 @@
 <?php
-include_once "Model/modelDatos.php";
+include_once "model/modelDatos.php";
 define('HOST',$db_host);
 define('BASE',$db_base);
 define('USER',$db_user);

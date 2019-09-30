@@ -3,6 +3,7 @@
 //  require_once 'Controller/EjemploController.php';
     require_once 'controller/LoginController.php';
     require_once 'view/LoginView.php';
+    require_once 'view/InicioView.php';
 
   define('ACTION',0);
   define('VALOR1',1);
@@ -35,6 +36,13 @@
     case 'logout' :
       $controller = new LoginController();
       $controller->cerrarSesion();
+    case 'inicio':
+      $controller = new InicioView();
+      $controller->ShowHome();
+    break;
+    default:
+      $controller = new InicioView();
+      $controller->ShowHome();
       break;
   } 
 ?>
