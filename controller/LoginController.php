@@ -1,7 +1,7 @@
 <?php
-require_once('controller/Controller.php');
-require_once('model/UsuarioModel.php');
-require_once('view/LoginView.php');
+require_once 'controller/Controller.php';
+require_once 'model/UsuarioModel.php';
+require_once 'view/LoginView.php';
 
 
 class LoginController extends Controller {
@@ -10,30 +10,31 @@ class LoginController extends Controller {
 
     function __construct() {
         parent::__construct();
-        $this->loginView = new LoginView;
-        $this->loginModel = new UsuarioModel;
-    }
-
-    function mostrarLogin() {
-        $this->loginView->mostrarLogin();   
+        $this->loginView = new LoginView();
+        $this->usuarioModel = new UsuarioModel();
     }
 
     function verificarLogin() {
-        $usuario = $_POST["usuario"];
+        $email = $_POST["email"];
         $contraseña = $_POST["contraseña"];
-        
-        if (!empty($usuario) && !empty($contraseña)) {
-            $usuarioDB = $this->usuarioModel->getUsuario($usuario);
-            if (isset($usuarioDB) && password_verify($contraseña, $usuarioDB->clave)) {
-                    session_start();
-                    $_SESSION['usuario'] = $usuario;
-                    $_SESSION['ID'] = $usuarioDB->id_usuario;
-                    header("Location: " . HOME);
-                    die();
-            } else {
-                    $error = "Usuario y/o contraseña incorrecta";
-                    $this->view->mostrarLogin($error);
+        $usuarioDB = $this->usuarioModel->getUsuario($email);
+
+        if (!empty($usuarioDB)) {
+            if(password_verify($contraseña, $usuarioDB->clave)) {
+                session_start();
+                $_SESSION['email'] = $email;
+                header("Location: " . HOME);
+                die();
             }
+            else {
+                $error = "Usuario y/o contraseña incorrectos";
+                $this->loginView->mostrarLogin($error);
+            }
+        }
+        else {
+            $error = "Usuario y/o contraseña incorrectos";
+            $this->loginView->mostrarLogin($error);
+            header("sfsd");
         }
     }
 
