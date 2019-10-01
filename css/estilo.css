@@ -1,0 +1,18 @@
+/* .capaAdelante{ 
+    position:absolute;
+    z-index:1;
+}
+.capaAtras{
+    position:absolute;
+    z-index:0;
+} */
+.fondo {
+    background-image: url(../images/image.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 543px;
+}
+.colorTransparente {
+    background-color: rgba(0, 0, 0, 0.5);
+}
