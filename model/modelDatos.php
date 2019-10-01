@@ -1,6 +1,6 @@
 <?php
-$db_host = "";
-$db_base = "";
-$db_user = "";
+$db_host = "localhost";
+$db_base = "trashout";
+$db_user = "root";
 $db_pass = "";
 ?>
