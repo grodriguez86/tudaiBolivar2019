@@ -8,9 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {* <link rel="stylesheet" href="css/bootstrap-4.1.3/bootstrap.min.css"> *}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light">
             <div class="col-5 col-sm-3 col-md-2 col-lg-2">
                 <a href="inicio"><img src="images/logo-institucional.png" class="card-img-top img-fluid" alt="..."></a>
             </div>
@@ -36,6 +37,5 @@
                 </ul>
             </div>
         </nav>
-        <div class="container-fluid p-0">
-            <div class="row m-0 mt-5 justify-content-center">
+        <div class="container-fluid">
     
