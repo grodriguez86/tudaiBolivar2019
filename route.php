@@ -1,5 +1,9 @@
-<?php
-require_once 'view/InicioView.php';
+  <?php
+
+//  require_once 'Controller/EjemploController.php';
+    require_once 'controller/LoginController.php';
+    require_once 'view/LoginView.php';
+    require_once 'view/InicioView.php';
 
   define('ACTION',0);
   define('VALOR1',1);
@@ -13,6 +17,25 @@ require_once 'view/InicioView.php';
   $partesUrl = explode('/', $action);
 
   switch ($partesUrl[ACTION]) {
+    // case 'home':
+    //   $controller = new EjemploController();
+    //   $controller->getHome();
+    // break;
+    // default:
+    //   $controller = new PaginaController();
+    //   $controller->getHome();
+    //   break;
+    case 'login' :
+      $view = new LoginView();
+      $view->mostrarLogin();
+      break;
+    case 'verificarLogin' :
+      $controller = new LoginController();
+      $controller->verificarLogin();
+      break;
+    case 'logout' :
+      $controller = new LoginController();
+      $controller->cerrarSesion();
     case 'inicio':
       $controller = new InicioView();
       $controller->ShowHome();
