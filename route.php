@@ -36,6 +36,10 @@
       $controller = new LoginController();
       $controller->register();
     break;
+    case 'verifyRegister':
+      $controller = new LoginController();
+      $controller->verifyRegister();
+    break;
     default:
       $controller = new InicioView();
       $controller->ShowHome();

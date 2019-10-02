@@ -16,3 +16,26 @@
 .colorTransparente {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* CSS PAGINA DE REGISTRO */
+
+.registerBackground {
+    height: 100vh;;
+    background: linear-gradient(to bottom, rgb(38,175,201) 0%,rgb(38,175,201) 50%,#ffffff 50%,rgb(255, 255, 255) 50%,rgb(255, 255, 255) 100%);
+ }
+
+ .tamañoImagenLogoRegister{
+    width: 20%;
+}
+
+.fondoAzul {
+    background-color:  rgb(38,175,201);
+}
+
+.textoAzul {
+    color:  rgb(38,175,201);
+}
+
+.negrita {
+    font-weight: bold;
+}

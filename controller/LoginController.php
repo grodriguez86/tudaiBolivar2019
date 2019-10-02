@@ -46,9 +46,31 @@ class LoginController extends Controller {
     }
 
     function register(){
-        $usuario = $_POST['usuario'];
         $correo = $_POST['correo'];
-        $this->loginView->mostrarRegister($usuario,$correo);        
+        $this->loginView->mostrarRegister($correo);        
+    }
+
+    function verifyRegister(){
+        $correo = $_POST['correo'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $dni = $_POST['dni'];
+        $calle = $_POST['calle'];
+        $numero = $_POST['numero'];
+        $piso = $_POST['piso'];
+        $numeroDep = $_POST['nroDep'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $localidad = $_POST['localidad'];
+
+        $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
+        $usuario = $this->usuarioModel->registerUser($correo,$password);
+        
+        if(($ciudadano)){
+            echo 'OK';
+        }
+        else {
+            echo 'ERROR';
+        }
     }
 }
 
