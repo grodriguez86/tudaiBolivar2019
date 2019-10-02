@@ -11,9 +11,9 @@
                 <form action="register" method="POST">
                     <h3 class="text-white">Queres ser parte?</h3>
                     <h2 class="text-white">REGISTRATE</h2>
-                    <div class="form-group">
+                    {* <div class="form-group">
                         <input type="input" class="form-control" name="usuario" placeholder="Escriba su usuario" required>
-                    </div>
+                    </div> *}
                     <div class="form-group">
                         <input type="email" class="form-control" name="correo" placeholder="Escriba su e-mail" required>
                     </div>
