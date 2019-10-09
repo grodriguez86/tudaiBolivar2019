@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2019 a las 16:07:09
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Servidor: localhost
+-- Tiempo de generación: 09-10-2019 a las 19:50:49
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -118,7 +118,9 @@ ALTER TABLE `cargo`
 -- Indices de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  ADD PRIMARY KEY (`idciudadano`,`mail`);
+  ADD PRIMARY KEY (`idciudadano`,`dni`),
+  ADD UNIQUE KEY `dni` (`dni`),
+  ADD UNIQUE KEY `mail` (`mail`);
 
 --
 -- Indices de la tabla `cuadrilla`
