@@ -1,24 +1,62 @@
-{include file="header.tpl"}
-
-    <div class="row justify-content-center fondoLogin">
-        <div class="col-sm-12 col-md-7 col-lg-4 mt-4">
-        <div class="card px-2 py-2">
-            <form action="verificarLogin" method="POST">
-                <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Introduzca su e-mail" required>
-                </div>
-                <div class="form-group">
-                <label for="exampleInputPassword1">Contraseña</label>
-                <input type="password" class="form-control" name="contraseña" placeholder="Introduza su contraseña" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Logearse</button>
-            </form>
-            {if !empty($error) }
-                <div class="alert alert-danger mt-2" role="alert">{$error}</div>
-            {/if}  
-        </div>            
-        </div>
-    </div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="{$basehref}">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TrashOut</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {* <link rel="stylesheet" href="css/bootstrap-4.1.3/bootstrap.min.css"> *}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/estilo.css">
+    </head>
     
-{include file="footer.tpl"}
+
+<body class="registerBackground">  
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center  align-items-center">
+      <div class="col-md-5 bg-white shadow">
+        <div class="row">
+          <div class="col-md-12">
+              <div class="row">
+                  <img src="images/logo-institucional.png" class="tamañoImagenLogoRegister mt-3 mb-3 mx-auto mr-4" alt="Italian Trulli" title="Worksi">        
+              </div>
+              <div class="mt-3 row">
+                  <form class="col-12" method="post">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="contraseña" class="form-control" placeholder="Contraseña" required>
+                        </div>
+                      </div>
+                    </div>
+                  </form>   
+              </div>
+              <div class="" id="">
+                <div class="row" id="divContenedorRespuesta"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 pl-2 pr-2">
+                  <button class="col-md-12 btn fondoAzul text-white" id="loginBtn" type="button" name="button">Logearse</button>
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="mx-auto pb-3">
+                  <a href="inicio" class="text-center textoAzul">Volver a inicio </a>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+    <script src="js/jquery.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

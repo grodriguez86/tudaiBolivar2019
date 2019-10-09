@@ -24,18 +24,14 @@ class LoginController extends Controller {
                 session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
                 $_SESSION['email'] = $nombreUsuario->nombre;
-                header("Location: " . HOME);
-                die();
+                echo 'OK';
             }
             else {
-                $error = "Usuario y/o contraseña incorrectos";
-                $this->loginView->mostrarLogin($error);
+                echo "error";
             }
         }
         else {
-            $error = "Usuario y/o contraseña incorrectos";
-            $this->loginView->mostrarLogin($error);
-            header("sfsd");
+            echo "error";
         }
     }
 
