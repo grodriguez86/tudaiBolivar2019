@@ -15,6 +15,17 @@ class LoginController extends Controller {
         $this->loginView = new LoginView();
         $this->inicioView = new InicioView();
         $this->usuarioModel = new UsuarioModel();
+        
+    }
+
+    function ShowHome($error){
+        $this->inicioView->ShowHome($error);
+
+    }
+
+    function mostrarLogin(){
+        $this->loginView->mostrarLogin();
+
     }
 
     function verificarLogin() {
@@ -24,7 +35,7 @@ class LoginController extends Controller {
 
         if (!empty($usuarioDB)) {
             if(password_verify($contraseña, $usuarioDB->clave)) {
-                session_start();
+                // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
                 $_SESSION['email'] = $nombreUsuario->nombre;
                 echo 'OK';
