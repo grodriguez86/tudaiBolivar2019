@@ -22,7 +22,8 @@ class LoginController extends Controller {
         if (!empty($usuarioDB)) {
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 session_start();
-                $_SESSION['email'] = $email;
+                $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
+                $_SESSION['email'] = $nombreUsuario->nombre;
                 header("Location: " . HOME);
                 die();
             }
