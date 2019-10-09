@@ -1,13 +1,12 @@
 {include file="header.tpl"}
 
-
-    <div class="col-6 col-lg-5 mt-5">
-        <div class="mt-5"></div>
+    <div class="row justify-content-center fondoLogin">
+        <div class="col-sm-12 col-md-7 col-lg-4 mt-4">
         <div class="card px-2 py-2">
             <form action="verificarLogin" method="POST">
                 <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="Introduzca su dirección de correo electrónico" required>
+                <input type="email" class="form-control" name="email" placeholder="Introduzca su e-mail" required>
                 </div>
                 <div class="form-group">
                 <label for="exampleInputPassword1">Contraseña</label>
@@ -19,6 +18,7 @@
                 <div class="alert alert-danger mt-2" role="alert">{$error}</div>
             {/if}  
         </div>            
+        </div>
     </div>
-
+    
 {include file="footer.tpl"}

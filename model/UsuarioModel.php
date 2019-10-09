@@ -14,6 +14,14 @@ class UsuarioModel extends Model {
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getNombreUsuario($email) {
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT nombre 
+                                                          FROM ciudadano 
+                                                          WHERE mail = ?");
+        $sentencia->execute(array($email));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
     public function registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo){
         $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO ciudadano (dni,apellido,nombre,calle,numero,piso,dtp,idlocalidad,mail) VALUES (?,?,?,?,?,?,?,?,?)");
         $sentencia->execute(array($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo));
