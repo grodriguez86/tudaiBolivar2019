@@ -33,6 +33,7 @@ $(document).ready(function() {
             complete: function (data) {
             },
             success: function (data) {
+                console.log(data);
                 if(data.indexOf('OK') > 0){
                     divContainer.innerHTML = '<div class="pl-3 pr-3 col-md-12"><div class="alert alert-success" role="alert">Se ha registrado con exito</div></div>';
                 }

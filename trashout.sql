@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-10-2019 a las 19:50:49
+-- Tiempo de generación: 09-10-2019 a las 20:32:22
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.1.32
 
@@ -41,16 +41,23 @@ CREATE TABLE `cargo` (
 
 CREATE TABLE `ciudadano` (
   `idciudadano` int(50) NOT NULL,
-  `dni` decimal(8,0) NOT NULL,
+  `dni` int(8) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `calle` varchar(30) NOT NULL,
   `numero` int(11) NOT NULL,
-  `piso` decimal(3,0) DEFAULT NULL,
-  `dtp` varchar(2) DEFAULT NULL,
+  `piso` varchar(3) DEFAULT NULL,
+  `dtp` varchar(5) DEFAULT NULL,
   `idlocalidad` int(11) NOT NULL,
   `mail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ciudadano`
+--
+
+INSERT INTO `ciudadano` (`idciudadano`, `dni`, `apellido`, `nombre`, `calle`, `numero`, `piso`, `dtp`, `idlocalidad`, `mail`) VALUES
+(3, 12313, 'asdas', 'asdasd', 'ssdfds', 321321, '', '', 1, 'usuario@com');
 
 -- --------------------------------------------------------
 
@@ -103,6 +110,13 @@ CREATE TABLE `usuario` (
   `mail` varchar(50) NOT NULL,
   `clave` varchar(130) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`mail`, `clave`) VALUES
+('usuario@com', '$2y$10$aCLjs5HvgQLkC.v3vPVPRez0tViQpJS.jYnF8D7CJv433s7.m.aB.');
 
 --
 -- Índices para tablas volcadas
@@ -160,7 +174,7 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  MODIFY `idciudadano` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `idciudadano` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cuadrilla`

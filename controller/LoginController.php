@@ -65,7 +65,7 @@ class LoginController extends Controller {
 
         $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
         $usuario = $this->usuarioModel->registerUser($correo,$password);
-        
+        //print_r($ciudadano);
         if(($ciudadano)){
             echo 'OK';
         }
