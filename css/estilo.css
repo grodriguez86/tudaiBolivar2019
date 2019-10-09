@@ -20,7 +20,7 @@
 /* CSS PAGINA DE REGISTRO */
 
 .registerBackground {
-    height: 100vh;;
+    height: 100vh;
     background: linear-gradient(to bottom, rgb(38,175,201) 0%,rgb(38,175,201) 50%,#ffffff 50%,rgb(255, 255, 255) 50%,rgb(255, 255, 255) 100%);
  }
 

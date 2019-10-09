@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-10-2019 a las 15:10:12
+-- Tiempo de generación: 30-09-2019 a las 16:07:09
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cargo` (
-  `idcargo` int(50) NOT NULL,
-  `nombre` varchar(20) NOT NULL
+  `idcargo` int(11) NOT NULL,
+  `nombre` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,14 +42,14 @@ CREATE TABLE `cargo` (
 CREATE TABLE `ciudadano` (
   `idciudadano` int(50) NOT NULL,
   `dni` decimal(8,0) NOT NULL,
-  `numero` int(11) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `calle` varchar(30) NOT NULL,
+  `numero` int(11) NOT NULL,
   `piso` decimal(3,0) DEFAULT NULL,
   `dtp` varchar(2) DEFAULT NULL,
-  `mail` varchar(50) NOT NULL,
-  `idlocalidad` int(50) DEFAULT NULL
+  `idlocalidad` int(11) NOT NULL,
+  `mail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -59,9 +59,9 @@ CREATE TABLE `ciudadano` (
 --
 
 CREATE TABLE `cuadrilla` (
-  `idcuadrilla` int(50) NOT NULL,
+  `idcuadrilla` int(11) NOT NULL,
   `idciudadano` int(50) NOT NULL,
-  `idcargo` int(50) DEFAULT NULL
+  `idcargo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -71,13 +71,14 @@ CREATE TABLE `cuadrilla` (
 --
 
 CREATE TABLE `denuncia` (
-  `iddenuncia` int(50) NOT NULL,
-  `idciudadano` int(50) DEFAULT NULL,
-  `calle` decimal(8,0) NOT NULL,
+  `iddenuncia` int(11) NOT NULL,
+  `idciudadano` int(50) NOT NULL,
+  `descripcion` varchar(50) NOT NULL,
+  `calle` varchar(30) NOT NULL,
   `numero` int(11) NOT NULL,
-  `idlocalidad` int(50) NOT NULL,
-  `fecha_denuncia` date DEFAULT NULL,
-  `idcuadrilla` int(50) DEFAULT NULL,
+  `idlocalidad` int(11) NOT NULL,
+  `fecha_denuncia` date NOT NULL,
+  `idcuadrilla` int(11) NOT NULL,
   `fecha_finalizacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -88,8 +89,8 @@ CREATE TABLE `denuncia` (
 --
 
 CREATE TABLE `localidad` (
-  `idlocalidad` int(50) NOT NULL,
-  `nombre` varchar(50) NOT NULL
+  `idlocalidad` int(11) NOT NULL,
+  `nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -117,27 +118,19 @@ ALTER TABLE `cargo`
 -- Indices de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  ADD PRIMARY KEY (`idciudadano`,`mail`),
-  ADD UNIQUE KEY `dni` (`dni`),
-  ADD KEY `mail` (`mail`),
-  ADD KEY `fk_ciudadano_localidad` (`idlocalidad`);
+  ADD PRIMARY KEY (`idciudadano`,`mail`);
 
 --
 -- Indices de la tabla `cuadrilla`
 --
 ALTER TABLE `cuadrilla`
-  ADD PRIMARY KEY (`idcuadrilla`),
-  ADD KEY `fk_cuadrilla_cargo` (`idcargo`),
-  ADD KEY `fk_cuadrilla_ciudadano` (`idciudadano`);
+  ADD PRIMARY KEY (`idcuadrilla`);
 
 --
 -- Indices de la tabla `denuncia`
 --
 ALTER TABLE `denuncia`
-  ADD PRIMARY KEY (`iddenuncia`),
-  ADD KEY `fk_denuncia_ciudadano` (`idciudadano`),
-  ADD KEY `fk_denuncia_localidad` (`idlocalidad`),
-  ADD KEY `fk_denuncia_cuadrilla` (`idcuadrilla`);
+  ADD PRIMARY KEY (`iddenuncia`,`idciudadano`,`idcuadrilla`);
 
 --
 -- Indices de la tabla `localidad`
@@ -152,35 +145,38 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`mail`);
 
 --
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- Filtros para la tabla `ciudadano`
+-- AUTO_INCREMENT de la tabla `cargo`
+--
+ALTER TABLE `cargo`
+  MODIFY `idcargo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
-  ADD CONSTRAINT `fk_ciudadano_localidad` FOREIGN KEY (`idlocalidad`) REFERENCES `localidad` (`idlocalidad`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `idciudadano` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- Filtros para la tabla `cuadrilla`
+-- AUTO_INCREMENT de la tabla `cuadrilla`
 --
 ALTER TABLE `cuadrilla`
-  ADD CONSTRAINT `fk_cuadrilla_cargo` FOREIGN KEY (`idcargo`) REFERENCES `cargo` (`idcargo`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cuadrilla_ciudadano` FOREIGN KEY (`idciudadano`) REFERENCES `ciudadano` (`idciudadano`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `idcuadrilla` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Filtros para la tabla `denuncia`
+-- AUTO_INCREMENT de la tabla `denuncia`
 --
 ALTER TABLE `denuncia`
-  ADD CONSTRAINT `fk_denuncia_ciudadano` FOREIGN KEY (`idciudadano`) REFERENCES `ciudadano` (`idciudadano`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_denuncia_cuadrilla` FOREIGN KEY (`idcuadrilla`) REFERENCES `cuadrilla` (`idcuadrilla`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_denuncia_localidad` FOREIGN KEY (`idlocalidad`) REFERENCES `localidad` (`idlocalidad`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `iddenuncia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Filtros para la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `localidad`
 --
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `fk_usuario_ciudadano` FOREIGN KEY (`mail`) REFERENCES `ciudadano` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `localidad`
+  MODIFY `idlocalidad` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
