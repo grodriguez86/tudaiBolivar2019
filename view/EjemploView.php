@@ -1,13 +1,13 @@
 <?php
-//  require_once "Views/View.php";
+  require_once "View.php";
 
-//  class EjemploView extends View {
+  class EjemploView extends View {
 
-//    public function __construct() {
-//      parent::__construct();
-//    }
+    public function __construct() {
+      parent::__construct();
+    }
 
-//    public function getHome() { 
-//     $this->smarty->assign('cursos',$baseDeDatosCat);  "Ejemplo asignacion de variable"
-//      $this->smarty->display('templates/home.tpl');
-//    }
+    public function denuncia() { 
+      $this->smarty->display('templates/denuncia.tpl');
+    }
+  }

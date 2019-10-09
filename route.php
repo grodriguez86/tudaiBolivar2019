@@ -1,6 +1,6 @@
   <?php
 
-//  require_once 'Controller/EjemploController.php';
+    require_once 'controller/EjemploController.php';
     require_once 'controller/LoginController.php';
     require_once 'view/LoginView.php';
     require_once 'view/InicioView.php';
@@ -39,6 +39,10 @@
     case 'verifyRegister':
       $controller = new LoginController();
       $controller->verifyRegister();
+    break;
+    case 'denuncia':
+      $controller = new EjemploController();
+      $controller->denuncia();
     break;
     default:
       $controller = new InicioView();
