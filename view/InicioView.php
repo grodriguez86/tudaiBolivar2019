@@ -16,4 +16,12 @@ class InicioView extends View {
         $this->smarty->assign("error", $mensaje);
         $this->smarty->display("templates/home.tpl");
     }
+
+    public function ShowHomeCiudadano($mensaje) {
+        if(!isset($mensaje)) {
+            $mensaje = "";
+        }
+        $this->smarty->assign("error", $mensaje);
+        $this->smarty->display("templates/homeCiudadano.tpl");
+    }
 }

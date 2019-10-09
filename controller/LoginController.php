@@ -1,11 +1,11 @@
 <?php
-require_once 'controller/Controller.php';
+require_once 'controller/SecuredController.php';
 require_once 'model/UsuarioModel.php';
 require_once 'view/LoginView.php';
 require_once 'view/InicioView.php';
 
 
-class LoginController extends Controller {
+class LoginController extends SecuredController{
     private $loginView;
     private $inicioView;
     private $usuarioModel;
@@ -19,7 +19,12 @@ class LoginController extends Controller {
     }
 
     function ShowHome($error){
-        $this->inicioView->ShowHome($error);
+        if($this->haySesion()){
+            $this->inicioView->ShowHomeCiudadano($error);
+        } 
+        else{
+            $this->inicioView->ShowHome($error);        
+        }
 
     }
 

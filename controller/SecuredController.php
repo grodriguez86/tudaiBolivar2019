@@ -8,8 +8,9 @@ class SecuredController extends Controller {
     }
 
     function haySesion() {
-        if(!isset($_SESSION)) {
-            header("Location: " . HOME);
+        if(empty($_SESSION['email'])) {
+            // header("Location: " . HOME);
+            return false;
         }
         else {
             return true;
