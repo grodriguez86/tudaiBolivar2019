@@ -1,23 +1,23 @@
 <?php
 
-//require_once 'Controller.php';
-//require_once 'EjemploModel.php';
-//require_once 'EjemploView.php';
+require_once 'Controller.php';
+require_once 'model/EjemploModel.php';
+require_once 'view/EjemploView.php';
 
-//class EjemploController extends Controller{
+class EjemploController extends Controller{
 
-//    private $ejemploView;
-//    private $ejemploModel;
+    private $ejemploView;
+    private $ejemploModel;
 
-//    public function __construct(){
-//        parent::__construct();
-//        $ejemploView = new ejemploView();
-//        $ejemploModel = new ejemploModel();
-//    } 
+    public function __construct(){
+        parent::__construct();
+        $ejemploView = new ejemploView();
+        $ejemploModel = new ejemploModel();
+    } 
 
-//    public function getHome(){
-//        $this->ejemploModel->saveData();
-//        $this->ejemploView->getHome();
-//    }
-  
-//} 
+    public function denuncia(){
+        $this->ejemploView->denuncia();  
+
+    }
+
+} 
