@@ -3,6 +3,12 @@ require_once 'view/View.php';
 
 class InicioView extends View {
 
+    public function __construct(){
+        parent::__construct();
+        
+
+    }
+
     public function ShowHome($mensaje) {
         if(!isset($mensaje)) {
             $mensaje = "";

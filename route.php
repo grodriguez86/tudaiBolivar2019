@@ -18,7 +18,7 @@
 
   switch ($partesUrl[ACTION]) {
     case 'login' :
-      $view = new LoginView();
+      $view = new LoginController();
       $view->mostrarLogin();
       break;
     case 'verificarLogin' :
@@ -29,7 +29,7 @@
       $controller = new LoginController();
       $controller->cerrarSesion();
     case 'inicio':
-      $controller = new InicioView();
+      $controller = new LoginController();
       $controller->ShowHome("");
     break;
     case 'register':
@@ -41,8 +41,8 @@
       $controller->verifyRegister();
     break;
     default:
-      $controller = new InicioView();
-      $controller->ShowHome();
+      $controller = new LoginController();
+      $controller->ShowHome("");
       break;
   } 
 ?>
