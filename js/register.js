@@ -3,10 +3,11 @@
 $(document).ready(function() {
 
     document.querySelector("#nombre").focus();
-
-    document.querySelector('#registerBtn').addEventListener('click', register)
+    let btn = document.querySelector('#registerBtn'); 
+    btn.addEventListener('click', register)
 
     function register(){
+        btn.disabled = true;    
         let divContainer = document.querySelector('#divContenedorRegisterRespuesta');
         let datos = {};
 
@@ -36,12 +37,18 @@ $(document).ready(function() {
                 console.log(data);
                 if(data.indexOf('OK') > 0){
                     divContainer.innerHTML = '<div class="pl-3 pr-3 col-md-12"><div class="alert alert-success" role="alert">Se ha registrado con exito</div></div>';
+                    setTimeout(function(){ 
+                    location.replace("login"); 
+                    }, 3000);
                 }
                 else {
+                    btn.disabled = false;
                     divContainer.innerHTML = '<div class="pl-3 pr-3 col-md-12"><div class="alert alert-danger" role="alert">Error al registrar usuario</div></div>';
                 }
             },
             error: function (data) {
+                btn.disabled = false;
+
                 alert("Problemas al tratar de enviar el formulario");
             }
         });

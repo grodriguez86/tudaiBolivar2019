@@ -17,6 +17,11 @@
                     <div class="form-group">
                         <input type="email" class="form-control" name="correo" placeholder="Escriba su e-mail" required>
                     </div>
+                    {if $error != ""}
+                        <div class="alert alert-danger" role="alert">
+                        {$error}
+                        </div>
+                    {/if}
                     <button type="submit" class="btn btn-primary">ENVIAR</button>
                 </form>
             </div>

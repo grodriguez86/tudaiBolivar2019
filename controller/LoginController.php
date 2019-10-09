@@ -2,15 +2,18 @@
 require_once 'controller/Controller.php';
 require_once 'model/UsuarioModel.php';
 require_once 'view/LoginView.php';
+require_once 'view/InicioView.php';
 
 
 class LoginController extends Controller {
     private $loginView;
+    private $inicioView;
     private $usuarioModel;
 
     function __construct() {
         parent::__construct();
         $this->loginView = new LoginView();
+        $this->inicioView = new InicioView();
         $this->usuarioModel = new UsuarioModel();
     }
 
@@ -44,7 +47,13 @@ class LoginController extends Controller {
 
     function register(){
         $correo = $_POST['correo'];
-        $this->loginView->mostrarRegister($correo);        
+        $usuario = $this->usuarioModel->getNombreUsuario($correo);
+        if($usuario){
+            $this->inicioView->ShowHome('Correo ya registrado');
+        } 
+        else{
+            $this->loginView->mostrarRegister($correo);        
+        }
     }
 
     function verifyRegister(){

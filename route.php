@@ -30,7 +30,7 @@
       $controller->cerrarSesion();
     case 'inicio':
       $controller = new InicioView();
-      $controller->ShowHome();
+      $controller->ShowHome("");
     break;
     case 'register':
       $controller = new LoginController();

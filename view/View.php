@@ -8,7 +8,7 @@
     protected $nombreUsuario;    
     
     public function __construct() {
-        session_start();
+        //session_start();
         if (isset($_SESSION['email'])) {$this->nombreUsuario = $_SESSION['email'];}
 
         $this->basehref = '//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/'; 
