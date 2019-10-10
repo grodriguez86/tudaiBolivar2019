@@ -44,6 +44,10 @@
       $controller = new EjemploController();
       $controller->denuncia();
     break;
+    case 'coordDesdeCalle':
+      $controller = new EjemploController();
+      $controller->coordDesdeCalle($partesUrl[VALOR1],$partesUrl[VALOR2],$partesUrl[VALOR3]);
+    break;
     default:
       $controller = new LoginController();
       $controller->ShowHome("");
