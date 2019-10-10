@@ -21,6 +21,10 @@
       $view = new LoginController();
       $view->mostrarLogin();
       break;
+    case 'misReportes' :
+      $view = new LoginController();
+      $view->misReportes();
+      break;
     case 'verificarLogin' :
       $controller = new LoginController();
       $controller->verificarLogin();
