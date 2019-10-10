@@ -40,3 +40,36 @@
 .negrita {
     font-weight: bold;
 }
+
+.homeCiudadano {
+    height: 75vh;
+    background-color: lightgray;
+}
+
+.elemento1Max {
+    height: 75vh;
+}
+.elemento2Max {
+    height: 25vh;
+    border-radius: 2vh;
+    background-color: black;
+}
+
+.divImagenBasura {
+    height: 100%;
+}
+
+.imagenBasura { 
+    height: 100%;
+}
+
+.fondoMapa {
+    height: 85%;
+    margin: 5%;
+    background-color: gray;
+    border-radius: 2vh;
+}
+
+.divMapa {
+    height: 100%;
+}
