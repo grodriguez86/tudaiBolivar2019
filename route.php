@@ -52,6 +52,10 @@
       $controller = new EjemploController();
       $controller->coordDesdeCalle($partesUrl[VALOR1],$partesUrl[VALOR2],$partesUrl[VALOR3]);
     break;
+    case 'terminos': 
+      $controller = new EjemploController();
+      $controller->mostrarTerminos();
+    break;
     default:
       $controller = new LoginController();
       $controller->ShowHome("");

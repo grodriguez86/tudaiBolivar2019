@@ -10,4 +10,8 @@
     public function denuncia() { 
       $this->smarty->display('templates/denuncia.tpl');
     }
+
+    public function mostrarTerminos() {
+      $this->smarty->display('templates/terminos.tpl');
+    }
   }

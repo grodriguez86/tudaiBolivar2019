@@ -40,4 +40,8 @@ class EjemploController extends SecuredController{
         print_r($coords);
     }
 
+    function mostrarTerminos() {
+        $this->ejemploView->mostrarTerminos();
+    }
+
 } 

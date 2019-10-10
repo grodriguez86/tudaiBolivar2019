@@ -17,12 +17,12 @@ $(document).ready(function() {
                                         <hr>
                                         <div class="form-group">
                                             <label for="exampleFormControlFile1" class="font-weight-bold">Adjuntar imagen de la basura</label>
-                                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                            <input type="file" class="form-control-file" id="exampleFormControlFile1" required>
                                         </div>
                                         <hr>
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label" for="exampleCheck1">Acepto los términos y condiciones</label>
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                                            <label class="form-check-label" for="exampleCheck1">Acepto los <a href="terminos" class="text-white font-weight-bold">términos y condiciones</a></label>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Enviar</button>
                                     </form>   
