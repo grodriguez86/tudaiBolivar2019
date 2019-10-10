@@ -66,10 +66,7 @@
 .fondoMapa {
     height: 85%;
     margin: 5%;
-    background-color: gray;
+    width: 90%;
+    border: 2vh solid gray;
     border-radius: 2vh;
-}
-
-.divMapa {
-    height: 100%;
 }

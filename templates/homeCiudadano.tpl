@@ -5,7 +5,7 @@
             <a class="btn" href="denunciaPunto">
                 <div class="col-12">
                     <div class="row m-0 elemento2Max justify-content-center align-items-center text-center text-white">
-                        <div class="col-4 divImagenBasura p-1">
+                        <div class="col-4 divImagenBasura p-3">
                             <img src="images/basura.png" class="imagenBasura">
                         </div>
                         <div class="col-8">
@@ -17,10 +17,10 @@
             <a class="btn" href="denunciaPersona">
                 <div class="col-12">
                     <div class="row m-0 elemento2Max justify-content-center align-items-center text-center text-white">
-                        <div class="col-3 divImagenBasura p-1">
+                        <div class="col-4 divImagenBasura p-1">
                             <img src="images/persona.png" class="imagenBasura">
                         </div>
-                        <div class="col-9">
+                        <div class="col-8">
                             <p class="h1">DENUNCIAR PERSONA <p class="h1 font-weight-bold">INFRAGANTI</p></p>
                         </div>
                     </div>
@@ -28,10 +28,8 @@
             </a>
         </div>
     </div>
-    <div class="col-7 divMapa">
-        <div id="map" class="fondoMapa"></div>
+    <div class="col-7 h-100">
+        <iframe class="fondoMapa" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12871.80405094321!2d-61.1374237302246!3d-36.24068395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1570725842168!5m2!1ses!2sar"></iframe>
     </div>
 </div>
-<script src="js/mapaPrueba.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap" async defer></script>
 {include file="footer.tpl" }
