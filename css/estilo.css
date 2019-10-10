@@ -37,6 +37,11 @@
     color:  rgb(38,175,201);
 }
 
+
+.fondoAzul {
+    background-color:  rgb(168, 168, 168);
+}
+
 .negrita {
     font-weight: bold;
 }

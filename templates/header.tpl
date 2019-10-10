@@ -27,6 +27,11 @@
                     <li class="nav-item">
                         <a class="btn btn-light categoria btn-lg btn-block" href="saberMas">SABER MAS</a>
                     </li>
+                    {if !empty($nombreUsuario)}
+                        <li class="nav-item">
+                            <a class="btn btn-light categoria btn-lg btn-block" href="misReportes">Mis Reportes</a>
+                        </li>
+                    {/if} 
                     <li class="nav-item">
                         {if !empty($nombreUsuario)}
                             <a class="btn btn-primary logearse btn-lg btn-block" href="logout">Cerrar sesion ({$nombreUsuario})</a>    
