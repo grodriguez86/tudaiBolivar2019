@@ -64,7 +64,8 @@
 }
 
 .fondoMapa {
-    height: 85%;
+    width: 100%;
+    height: 100%;
     margin: 5%;
     background-color: gray;
     border-radius: 2vh;

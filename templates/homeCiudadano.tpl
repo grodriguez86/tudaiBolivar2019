@@ -32,6 +32,7 @@
         <div id="map" class="fondoMapa"></div>
     </div>
 </div>
-<script src="js/mapaPrueba.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap" async defer></script>
+<script src="js/jquery.js" ></script>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyB_OgTgi1I4tyucC11SUnopRVK4hQxwjLc"></script> 
+<script src="js/denuncia.js" ></script>
 {include file="footer.tpl" }
