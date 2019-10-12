@@ -37,6 +37,11 @@
     color:  rgb(38,175,201);
 }
 
+
+.fondoAzul {
+    background-color:  rgb(38, 175, 201);
+}
+
 .negrita {
     font-weight: bold;
 }
@@ -65,12 +70,9 @@
 
 .fondoMapa {
     width: 100%;
-    height: 100%;
+    height: 400px;
     margin: 5%;
-    background-color: gray;
+    width: 90%;
+    border: 2vh solid gray;
     border-radius: 2vh;
-}
-
-.divMapa {
-    height: 100%;
 }

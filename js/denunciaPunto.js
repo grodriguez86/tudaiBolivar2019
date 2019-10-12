@@ -61,11 +61,11 @@ $(document).ready(function() {
             let pos1 = position["coords"]["latitude"];
             let pos2 = position["coords"]["longitude"];
             let coord = {lat: pos1 ,lng: pos2};
-            let coord2 = {lat: pos1+0.05 ,lng: pos2};
-            let coord3 = {lat: pos1+0.06 ,lng: pos2};
+            document.querySelector("#inputLat").value = pos1;
+            document.querySelector("#inputLon").value = pos2;
             console.log(pos1,pos2);
             var map = new google.maps.Map(document.getElementById('map'),{
-                zoom: 17,
+                zoom: 15,
                 center: coord
             });
             var marker = new google.maps.Marker({
@@ -73,16 +73,7 @@ $(document).ready(function() {
                 map: map,
                 title: "Ubicacion actual"
             });
-            marker = new google.maps.Marker({
-                position: coord2,
-                map: map,
-                title: "Ubicacion 2"
-            });
-            marker = new google.maps.Marker({
-                position: coord3,
-                map: map,
-                title: "Ubicacion 3"
-            });
+            
         }
 
         function localizar(direccion) {
@@ -101,38 +92,33 @@ $(document).ready(function() {
                 if (status === 'OK') {
                     var resultados = results[0].geometry.location,
                     resultados_lat = resultados.lat(),
-                    resultados_long = resultados.lng(),
-                    resultados2_lat = resultados.lat()+0.05,
-                    resultados2_long = resultados.lng(),    
-                    resultados3_lat = resultados.lat()+0.07,
-                    resultados3_long = resultados.lng(),
-                    coord2 = {lat: resultados2_lat ,resultados2_long},
-                    coord3 = {lat: resultados3_lat ,resultados3_long};
-                    console.log(resultados);
+                    resultados_long = resultados.lng();
+                    document.querySelector("#inputLat").value = resultados_lat;
+                    document.querySelector("#inputLon").value = resultados_long;
                     map.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location,
                         title: direccion
                     });
-                    var markers = [
-                        ['Basura 1, Bolivar', -36.240677999999996, -61.1286799],
-                        ['Basura 2, Bolivar', -36.25, -61.1286799],
-                        ['Basura 3, Bolivar', -36.26, -61.1286799]
-                    ];
-                    var bounds = new google.maps.LatLngBounds();
-                    for(var i = 0; i < markers.length; i++ ) {
-                        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+                    // var markers = [
+                    //     ['Basura 1, Bolivar', -36.240677999999996, -61.1286799],
+                    //     ['Basura 2, Bolivar', -36.25, -61.1286799],
+                    //     ['Basura 3, Bolivar', -36.26, -61.1286799]
+                    // ];
+                    // var bounds = new google.maps.LatLngBounds();
+                    // for(var i = 0; i < markers.length; i++ ) {
+                    //     var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
                         
-                        bounds.extend(position);
-                        marker = new google.maps.Marker({
-                            position: position,
-                            map: map,
-                            title: markers[i][0]
-                        });
-                        // Center the map to fit all markers on the screen
-                        map.fitBounds(bounds);
-                    }
+                    //     bounds.extend(position);
+                    //     marker = new google.maps.Marker({
+                    //         position: position,
+                    //         map: map,
+                    //         title: markers[i][0]
+                    //     });
+                    //     // Center the map to fit all markers on the screen
+                    //     map.fitBounds(bounds);
+                    // }
                     
                 } else {
                     var mensajeError = "";
@@ -148,6 +134,7 @@ $(document).ready(function() {
             });
         }
         
+        //document.querySelector("#btnEnviarPunto").disabled = true;
         $("#buscar").click(function() {
             var direccion = $("#direccion").val();
 
@@ -157,7 +144,17 @@ $(document).ready(function() {
         });
         // denuncia Punto
         $('.btnDenunciaPunto').click(function(e) {
-            document.querySelector("#id01").style.display = "block";;
+            document.querySelector("#id01").style.display = "block";
+        });
+
+        $('#btnBuscarUbicacion').click(function(e) {
+            var ubi = document.querySelector("#inputUbicacion").value;
+            if(ubi!=""){
+                localizar(ubi);            
+            }
+            else{
+                $("#btnBuscarUbicacion").notify("Debe ingresar una ubicación o punto de interes, válido","error");
+            }
         });
     });
     

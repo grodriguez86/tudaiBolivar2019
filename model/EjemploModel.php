@@ -5,6 +5,7 @@ require_once 'model.php';
 
 class EjemploModel extends Model{
 
+  
     public function __construct(){
         parent::__construct();
     } 
@@ -14,5 +15,22 @@ class EjemploModel extends Model{
       $sentencia->execute(array('DATO'));
       return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+
+    public function getDenunciaID($id){
+      $sentencia = $this->conectarBaseDeDatos->prepare("SELECT * FROM denuncia WHERE iddenuncia = ?");
+      $sentencia->execute(array($id));
+      return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function saveDenuncia($ubicacion, $latitud, $longitud, $idciudadano,$idlocalidad){
+      $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO denuncia (idciudadano,descripcion,ubicacion,idlocalidad,latitud,longitud,idcuadrilla) VALUES (?,?,?,?,?,?,?)");
+      $sentencia->execute(array($idciudadano,"",$ubicacion,$idlocalidad,$latitud,$longitud,"1"));
+      return $this->conectarBaseDeDatos->lastInsertId();
+    }
+
+    function denunciaPersona(){
+      $this->loginView->showReportes($reportes); 
+      die();
+  }
   
 } 

@@ -42,7 +42,10 @@ class LoginController extends SecuredController{
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
-                $_SESSION['email'] = $nombreUsuario->nombre;
+                $_SESSION['nombre'] = $nombreUsuario->nombre;
+                $_SESSION['email'] = $nombreUsuario->mail;
+                $_SESSION['idciudadano'] = $nombreUsuario->idciudadano;
+                $_SESSION['idlocalidad'] = $nombreUsuario->idlocalidad;
                 echo 'OK';
             }
             else {
@@ -70,6 +73,12 @@ class LoginController extends SecuredController{
         else{
             $this->loginView->mostrarRegister($correo);        
         }
+    }
+
+    function misReportes(){
+        $reportes = $this->usuarioModel->getReportes($_SESSION['idciudadano']);
+        $this->loginView->showReportes($reportes); 
+        die();
     }
 
     function verifyRegister(){

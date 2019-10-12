@@ -15,7 +15,7 @@ class UsuarioModel extends Model {
     }
 
     public function getNombreUsuario($email) {
-        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT nombre 
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT idciudadano,nombre,mail,idlocalidad
                                                           FROM ciudadano 
                                                           WHERE mail = ?");
         $sentencia->execute(array($email));
@@ -32,6 +32,15 @@ class UsuarioModel extends Model {
     public function registerUser($correo,$password){
         $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO usuario (mail,clave) VALUES (?,?)");
         $sentencia->execute(array($correo,$password));
+    }
+
+
+    public function getReportes($idciudadano){
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT d.iddenuncia,d.descripcion,d.ubicacion,l.nombre,d.fecha_denuncia,d.fecha_finalizacion FROM denuncia d, localidad l WHERE d.idlocalidad = l.idlocalidad and d.idciudadano = ?");
+        $sentencia->execute(array($idciudadano));
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+
+
     }
 }
 ?>
