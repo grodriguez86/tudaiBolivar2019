@@ -51,12 +51,8 @@ class EjemploController extends SecuredController{
         $this->ejemploView->mostrarTerminos();
     }
 
-    function denunciaPunto() {
-        $this->ejemploView->denunciaPunto();
-    }
-
-    function denunciaPersona() {
-        $this->ejemploView->denunciaPersona();
+    function mostrarDenuncia($tipoDenuncia) {
+        $this->ejemploView->mostrarDenuncia($tipoDenuncia);
     }
 
     public function grabarDenunciaPunto(){
