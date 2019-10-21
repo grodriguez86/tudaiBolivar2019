@@ -64,6 +64,10 @@
       $controller = new EjemploController();
       $controller->grabarDenunciaPunto();
     break;
+    case 'grabarDenunciaPersona':
+      $controller = new EjemploController();
+      $controller->grabarDenunciaPersona();
+    break;
     case 'confirmacionDenuncia':
       $controller = new EjemploController();
       $controller->confirmacionDenuncia($partesUrl[VALOR1],$partesUrl[VALOR2]);

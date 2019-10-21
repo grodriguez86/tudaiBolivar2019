@@ -20,7 +20,13 @@ class LoginController extends SecuredController{
 
     function ShowHome($error){
         if(!empty($_SESSION['email'])) {
-            $this->inicioView->ShowHomeCiudadano($error); 
+            if($_SESSION['tipo'] = 'ciudadano') {
+                $this->inicioView->ShowHomeCiudadano($error); 
+            }
+            else {
+                $reportes = $this->usuarioModel->getReportes();
+                $this->inicioView->ShowHomeCuadrilla($error, $reportes); 
+            }
         }
         else {
             $this->inicioView->ShowHome($error); 
@@ -75,7 +81,7 @@ class LoginController extends SecuredController{
 
     function misReportes(){
         $this->haySesion();
-        $reportes = $this->usuarioModel->getReportes($_SESSION['idciudadano']);
+        $reportes = $this->usuarioModel->getReportesCiudadano($_SESSION['idciudadano']);
         $this->loginView->showReportes($reportes); 
         die();
     }

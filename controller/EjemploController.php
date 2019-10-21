@@ -55,6 +55,10 @@ class EjemploController extends SecuredController{
         $this->ejemploView->denunciaPunto();
     }
 
+    function denunciaPersona() {
+        $this->ejemploView->denunciaPersona();
+    }
+
     public function grabarDenunciaPunto(){
         $this->haySesion();
         $ubicacion = $_POST["inputUbicacion"];

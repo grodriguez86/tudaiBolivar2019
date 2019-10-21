@@ -15,6 +15,10 @@
       $this->smarty->display('templates/denunciaPunto.tpl');
     }
 
+    public function denunciaPersona() { 
+      $this->smarty->display('templates/denunciaPersona.tpl');
+    }
+
     public function confirmacionDenuncia($registro,$ciudadano,$pagina) {
       $this->smarty->assign('pagina',$pagina);
       $this->smarty->assign('registro',$registro);
