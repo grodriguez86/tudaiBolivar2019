@@ -76,3 +76,144 @@
     border: 2vh solid gray;
     border-radius: 2vh;
 }
+
+.divImagenBasura2 { /* este */
+    height: 90%;
+}
+
+.titulo {
+    font-size: 5vh;
+}
+
+@media (max-width: 375px) {
+    /* .contenedorMapa {
+        height: 50%;
+    } */
+    .homeCiudadano {
+        height: 82vh;
+        background-color: lightgray;
+    }
+    .titulo {
+        font-size: 3vh;
+    }
+    .divImagenBasura { 
+        height: 60%;
+    }
+    .divImagenBasura2 {
+        height: 90%;
+    }
+    .elemento1Max {
+        height: 40vh;
+    }
+    .elemento2Max {
+        height: 15vh;
+        border-radius: 2vh;
+        background-color: black;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 426px) {
+    /* .contenedorMapa {
+        height: 50%;
+    } */
+    .homeCiudadano {
+        height: 100vh;
+        background-color: lightgray;
+    }
+    .titulo {
+        font-size: 3vh;
+    }
+    .divImagenBasura { 
+        height: 60%;
+    }
+    .divImagenBasura2 {
+        height: 90%;
+    }
+    .elemento1Max {
+        height: 40vh;
+    }
+    .elemento2Max {
+        height: 15vh;
+        border-radius: 2vh;
+        background-color: black;
+    }
+}
+@media (min-width: 427px) and (max-width: 768px) {
+    /* .contenedorMapa {
+        height: 100%;
+    } */
+    .homeCiudadano {
+        height: 83vh;
+        background-color: lightgray;
+    }
+    .titulo {
+        font-size: 3vh;
+    }
+    .divImagenBasura { 
+        height: 60%;
+    }
+    .divImagenBasura2 {
+        height: 90%;
+    }
+    .elemento1Max {
+        height: 50vh;
+    }
+    .elemento2Max {
+        height: 25vh;
+        border-radius: 2vh;
+        background-color: black;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* .contenedorMapa {
+        height: 100%;
+    } */
+    .homeCiudadano {
+        height: 81vh;
+        background-color: lightgray;
+    }
+    .titulo {
+        font-size: 3vh;
+    }
+    .divImagenBasura { 
+        height: 50%;
+    }
+    .divImagenBasura2 {
+        height: 90%;
+        /* width: 30%; */
+    }
+    .elemento1Max {
+        height: 60vh;
+    }
+    .elemento2Max {
+        height: 25vh;
+        border-radius: 2vh;
+        background-color: black;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+    /* .contenedorMapa {
+        height: 100%;
+    } */
+    .homeCiudadano {
+        height: 81vh;
+        background-color: lightgray;
+    }
+    .titulo {
+        font-size: 4vh;
+    }
+    .divImagenBasura { 
+        height: 50%;
+    }
+    .divImagenBasura2 {
+        height: 90%;
+    }
+    .elemento1Max {
+        height: 75vh;
+    }
+    .elemento2Max {
+        height: 30vh;
+        border-radius: 2vh;
+        background-color: black;
+    }
+}
