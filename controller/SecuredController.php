@@ -9,8 +9,8 @@ class SecuredController extends Controller {
 
     function haySesion() {
         if(empty($_SESSION['email'])) {
-            // header("Location: " . HOME);
-            return false;
+            header("Location: " . HOME);
+            die();
         }
         else {
             return true;

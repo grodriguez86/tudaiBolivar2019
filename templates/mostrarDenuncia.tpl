@@ -17,9 +17,18 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1" class="font-weight-bold">Adjuntar imagen de la
-                            basura</label>
+                        <label for="exampleFormControlFile1" class="font-weight-bold">
+                        {if $tipoDenuncia eq 'punto'}
+                            Adjuntar imagen de la basura
+                        {elseif $tipoDenuncia eq 'persona'}
+                            Adjuntar video
+                        {/if}
+                        </label>
+                        {if $tipoDenuncia eq 'punto'}
                             <input type="file" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
+                        {elseif $tipoDenuncia eq 'persona'}
+                            <input type="file" accept="video/*" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
+                        {/if}
                     </div>
                     <hr>
                     <div class="form-group form-check">

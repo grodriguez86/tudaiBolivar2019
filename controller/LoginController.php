@@ -19,18 +19,23 @@ class LoginController extends SecuredController{
     }
 
     function ShowHome($error){
-        if($this->haySesion()){
-            $this->inicioView->ShowHomeCiudadano($error);
-        } 
-        else{
-            $this->inicioView->ShowHome($error);        
+        if(!empty($_SESSION['email'])) {
+            if($_SESSION['nivel'] = '0') {
+                $this->inicioView->ShowHomeCiudadano($error); 
+            }
+            // SI HAY NIVEL 1 Y 2 PARA CUADRILLA HAY QUE VER SI CAMBIA EL INICIO O VEN LO MISMO
+            if ($_SESSION['nivel'] = '1') {
+                $reportes = $this->usuarioModel->getReportes();
+                $this->inicioView->ShowHomeCuadrilla($error, $reportes); 
+            }
         }
-
+        else {
+            $this->inicioView->ShowHome($error); 
+        }
     }
 
     function mostrarLogin(){
         $this->loginView->mostrarLogin();
-
     }
 
     function verificarLogin() {
@@ -44,6 +49,7 @@ class LoginController extends SecuredController{
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
+                $_SESSION['nivel'] = $nombreUsuario->nivel;
                 $_SESSION['idciudadano'] = $nombreUsuario->idciudadano;
                 $_SESSION['idlocalidad'] = $nombreUsuario->idlocalidad;
                 echo 'OK';
@@ -76,7 +82,8 @@ class LoginController extends SecuredController{
     }
 
     function misReportes(){
-        $reportes = $this->usuarioModel->getReportes($_SESSION['idciudadano']);
+        $this->haySesion();
+        $reportes = $this->usuarioModel->getReportesCiudadano($_SESSION['idciudadano']);
         $this->loginView->showReportes($reportes); 
         die();
     }

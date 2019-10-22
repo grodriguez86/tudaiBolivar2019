@@ -35,12 +35,16 @@ class UsuarioModel extends Model {
     }
 
 
-    public function getReportes($idciudadano){
+    public function getReportesCiudadano($idciudadano){
         $sentencia = $this->conectarBaseDeDatos->prepare("SELECT d.iddenuncia,d.descripcion,d.ubicacion,l.nombre,d.fecha_denuncia,d.fecha_finalizacion FROM denuncia d, localidad l WHERE d.idlocalidad = l.idlocalidad and d.idciudadano = ?");
         $sentencia->execute(array($idciudadano));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 
-
+    public function getReportes(){
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT * FROM denuncia");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }
 }
 ?>
