@@ -2,7 +2,12 @@
 <div class="row homeCiudadano justify-content-center align-items-center">
     <div class="col-md-12 divForm">
         <div class="card p-2 bg-dark text-white formDenunciaPunto">
-            <div class="card-header bg-dark font-weight-bold text-center text-uppercase">Denunciar punto con basura
+            <div class="card-header bg-dark font-weight-bold text-center text-uppercase">
+            {if $tipoDenuncia eq 'punto'}
+                Denunciar punto con basura
+            {elseif $tipoDenuncia eq 'persona'}
+                Denunciar persona tirando basura
+            {/if}
             </div>
             <div id="map" class="fondoMapa">
             </div>
@@ -27,7 +32,7 @@
                         {if $tipoDenuncia eq 'punto'}
                             <input type="file" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
                         {elseif $tipoDenuncia eq 'persona'}
-                            <input type="file" accept="video/*" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
+                            <input type="file" accept="video/*" class="form-control-file btn btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
                         {/if}
                     </div>
                     <hr>
