@@ -50,11 +50,11 @@
     break;
     case 'denunciaPersona':
       $controller = new EjemploController();
-      $controller->denunciaPersona();
+      $controller->mostrarDenuncia('persona');
     break;
     case 'denunciaPunto':
       $controller = new EjemploController();
-      $controller->denunciaPunto();
+      $controller->mostrarDenuncia('punto');
     break;
     case 'coordDesdeCalle':
       $controller = new EjemploController();
@@ -63,6 +63,10 @@
     case 'grabarDenunciaPunto':
       $controller = new EjemploController();
       $controller->grabarDenunciaPunto();
+    break;
+    case 'grabarDenunciaPersona':
+      $controller = new EjemploController();
+      $controller->grabarDenunciaPersona();
     break;
     case 'confirmacionDenuncia':
       $controller = new EjemploController();

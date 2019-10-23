@@ -19,18 +19,21 @@ class LoginController extends SecuredController{
     }
 
     function ShowHome($error){
-        if($this->haySesion()){
-            $this->inicioView->ShowHomeCiudadano($error);
-        } 
-        else{
-            $this->inicioView->ShowHome($error);        
+        if(!empty($_SESSION['email'])) {
+            if($_SESSION['nivel'] == '0') {
+                $this->inicioView->ShowHomeCiudadano($error); 
+            }
+            if ($_SESSION['nivel'] == '1') {
+                $this->misReportes();
+            }
         }
-
+        else {
+            $this->inicioView->ShowHome($error); 
+        }
     }
 
     function mostrarLogin(){
         $this->loginView->mostrarLogin();
-
     }
 
     function verificarLogin() {
@@ -44,6 +47,7 @@ class LoginController extends SecuredController{
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
+                $_SESSION['nivel'] = $usuarioDB->nivel;
                 $_SESSION['idciudadano'] = $nombreUsuario->idciudadano;
                 $_SESSION['idlocalidad'] = $nombreUsuario->idlocalidad;
                 echo 'OK';
@@ -76,9 +80,9 @@ class LoginController extends SecuredController{
     }
 
     function misReportes(){
-        $reportes = $this->usuarioModel->getReportes($_SESSION['idciudadano']);
+        $this->haySesion();
+        $reportes = $this->usuarioModel->getReportesCiudadano($_SESSION['idciudadano']);
         $this->loginView->showReportes($reportes); 
-        die();
     }
 
     function verifyRegister(){
@@ -95,7 +99,7 @@ class LoginController extends SecuredController{
 
         $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
         $usuario = $this->usuarioModel->registerUser($correo,$password);
-        //print_r($ciudadano);
+
         if(($ciudadano)){
             echo 'OK';
         }

@@ -14,6 +14,7 @@ class UsuarioModel extends Model {
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
+
     public function getNombreUsuario($email) {
         $sentencia = $this->conectarBaseDeDatos->prepare("SELECT idciudadano,nombre,mail,idlocalidad
                                                           FROM ciudadano 
@@ -25,22 +26,31 @@ class UsuarioModel extends Model {
     public function registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo){
         $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO ciudadano (dni,apellido,nombre,calle,numero,piso,dtp,idlocalidad,mail) VALUES (?,?,?,?,?,?,?,?,?)");
         $sentencia->execute(array($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo));
-        //print_r($sentencia);
         return $this->conectarBaseDeDatos->lastInsertId();
     }
 
     public function registerUser($correo,$password){
-        $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO usuario (mail,clave) VALUES (?,?)");
-        $sentencia->execute(array($correo,$password));
+        $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO usuario (mail,clave,nivel) VALUES (?,?,?)");
+        $sentencia->execute(array($correo,$password,0));
     }
 
 
-    public function getReportes($idciudadano){
-        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT d.iddenuncia,d.descripcion,d.ubicacion,l.nombre,d.fecha_denuncia,d.fecha_finalizacion FROM denuncia d, localidad l WHERE d.idlocalidad = l.idlocalidad and d.idciudadano = ?");
+    public function getReportesCiudadano($idciudadano){
+        if ($_SESSION['nivel'] == 1) {
+            $sentencia = $this->conectarBaseDeDatos->prepare("SELECT * FROM denuncia");
+        }
+        else {
+            $sentencia = $this->conectarBaseDeDatos->prepare("SELECT d.iddenuncia,d.descripcion,d.ubicacion,l.nombre,d.fecha_denuncia,d.fecha_finalizacion FROM denuncia d, localidad l WHERE d.idlocalidad = l.idlocalidad and d.idciudadano = ?");
+        }
         $sentencia->execute(array($idciudadano));
         return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
 
-
+    public function getReportes(){
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT * FROM denuncia");
+        $sentencia->execute();
+        $sentencia->fetchAll(PDO::FETCH_OBJ);
+        print_r($sentencia);
     }
 }
 ?>
