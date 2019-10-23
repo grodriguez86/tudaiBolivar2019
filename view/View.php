@@ -13,7 +13,8 @@
         $this->basehref = '//'.$_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF']).'/'; 
         $this->smarty = new Smarty();
         $this->smarty->assign('basehref',$this->basehref);
-        $this->smarty->assign("nombreUsuario", $_SESSION['nombre']);     
+        $this->smarty->assign("nombreUsuario", $_SESSION['nombre']); 
+        echo ($_SESSION['nombre']);  
 
     }
   }

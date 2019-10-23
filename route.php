@@ -18,12 +18,12 @@
 
   switch ($partesUrl[ACTION]) {
     case 'login' :
-      $view = new LoginController();
-      $view->mostrarLogin();
+      $controller = new LoginController();
+      $controller->mostrarLogin();
       break;
     case 'misReportes' :
-      $view = new LoginController();
-      $view->misReportes();
+      $controller = new LoginController();
+      $controller->misReportes();
       break;
     case 'verificarLogin' :
       $controller = new LoginController();
@@ -51,6 +51,11 @@
     case 'denunciaPersona':
       $controller = new EjemploController();
       $controller->mostrarDenuncia('persona');
+    break;
+    //seba 
+    case 'finalizarDenuncia':
+      $controller = new EjemploController();
+      $controller->finalizarDenuncia($partesUrl[VALOR1]);
     break;
     case 'denunciaPunto':
       $controller = new EjemploController();
