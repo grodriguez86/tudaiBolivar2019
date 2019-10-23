@@ -6,7 +6,7 @@
     protected $basehref;
     protected $smarty;
     protected $nombreUsuario;    
-    
+   
     public function __construct() {
         //session_start();
 
@@ -14,7 +14,7 @@
         $this->smarty = new Smarty();
         $this->smarty->assign('basehref',$this->basehref);
         $this->smarty->assign("nombreUsuario", $_SESSION['nombre']);     
-
+        $this->smarty->assign("nivel", $_SESSION['nivel']);     
     }
   }
  ?>

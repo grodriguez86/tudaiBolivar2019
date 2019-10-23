@@ -49,7 +49,7 @@ class LoginController extends SecuredController{
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
-                $_SESSION['nivel'] = $nombreUsuario->nivel;
+                $_SESSION['nivel'] = $usuarioDB->nivel;
                 $_SESSION['idciudadano'] = $nombreUsuario->idciudadano;
                 $_SESSION['idlocalidad'] = $nombreUsuario->idlocalidad;
                 echo 'OK';
@@ -85,7 +85,6 @@ class LoginController extends SecuredController{
         $this->haySesion();
         $reportes = $this->usuarioModel->getReportesCiudadano($_SESSION['idciudadano']);
         $this->loginView->showReportes($reportes); 
-        die();
     }
 
     function verifyRegister(){
