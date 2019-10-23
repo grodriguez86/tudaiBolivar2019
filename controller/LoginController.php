@@ -20,14 +20,12 @@ class LoginController extends SecuredController{
 
     function ShowHome($error){
         if(!empty($_SESSION['email'])) {
-            //if($_SESSION['nivel'] == '0') {
+            if($_SESSION['nivel'] == '0') {
                 $this->inicioView->ShowHomeCiudadano($error); 
-            //}
-            // SI HAY NIVEL 1 Y 2 PARA CUADRILLA HAY QUE VER SI CAMBIA EL INICIO O VEN LO MISMO
-            //if ($_SESSION['nivel'] == '1') {
-            //    $reportes = $this->usuarioModel->getReportes();
-            //    $this->inicioView->ShowHomeCuadrilla($error, $reportes); 
-            //}
+            }
+            if ($_SESSION['nivel'] == '1') {
+                $this->misReportes();
+            }
         }
         else {
             $this->inicioView->ShowHome($error); 
@@ -102,7 +100,7 @@ class LoginController extends SecuredController{
 
         $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
         $usuario = $this->usuarioModel->registerUser($correo,$password);
-        //print_r($ciudadano);
+
         if(($ciudadano)){
             echo 'OK';
         }
