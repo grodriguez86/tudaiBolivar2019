@@ -20,10 +20,11 @@
       $this->smarty->display('templates/denunciaPersona.tpl');
     }
 
-    public function confirmacionDenuncia($registro,$ciudadano,$pagina) {
+    public function confirmacionDenuncia($registro,$ciudadano,$pagina,$nivel) {
       $this->smarty->assign('pagina',$pagina);
       $this->smarty->assign('registro',$registro);
       $this->smarty->assign('ciudadano',$ciudadano);
+      $this->smarty->assign('nivel',$nivel);
       $this->smarty->display('templates/confirmacionDenuncia.tpl');
     }
 
@@ -40,5 +41,11 @@
       $this->smarty->assign('registro',$registro);
       $this->smarty->assign('mensaje',"");
       $this->smarty->display('templates/subirArchivo.tpl');
+    }
+
+    public function finalizarDenuncia($denuncia,$ciudadano){
+      $this->smarty->assign('registro',$denuncia);
+      $this->smarty->assign('ciudadano',$ciudadano);
+      $this->smarty->display('templates/confirDenunFinalizar.tpl');
     }
   }

@@ -24,7 +24,8 @@ class EjemploController extends SecuredController{
         $this->haySesion();
         $registro = $this->ejemploModel->getDenunciaID($id);
         $ciudadano = $_SESSION['nombre'];
-        $this->ejemploView->confirmacionDenuncia($registro, $ciudadano, $pagina);  
+        $nivel = $_SESSION['nivel'];
+        $this->ejemploView->confirmacionDenuncia($registro, $ciudadano, $pagina,$nivel);  
     }
 
     function getCoordinates($address){
@@ -51,6 +52,13 @@ class EjemploController extends SecuredController{
         $this->ejemploView->mostrarTerminos();
     }
 
+    function finalizarDenuncia($id) {
+        $ciudadano = $_SESSION['nombre'];
+        $denuncia = $this->ejemploModel->getDenunciaID($id);
+        $this->ejemploView->finalizarDenuncia($denuncia,$ciudadano);
+    }
+
+
     function mostrarDenuncia($tipoDenuncia) {
         $this->ejemploView->mostrarDenuncia($tipoDenuncia);
     }
@@ -70,6 +78,24 @@ class EjemploController extends SecuredController{
         // subir imagen
         $this->uploadFile("denuncia",$idDenuncia);
     }
+
+    //finalizar la denuncia
+    public function finalizarDenunciaPunto(){
+        $this->haySesion();
+        $denunciaid = $_POST["denunciaid"];
+        $fechafin = $_POST["fechafin"];
+        $imagen = $_FILES["fileToUpload"]["name"];
+        $this->ejemploModel->finalizarDenunciaPunto($denunciaid, $fechafin);
+        // subir imagen
+        $this->uploadFile("denuncia",$denunciaid);
+        header("Location: finalizarDenuncia/".$denunciaid);
+        die(); 
+    }
+
+
+
+
+
 
     // subir imagen
 
@@ -130,6 +156,9 @@ class EjemploController extends SecuredController{
             $fileNewName = time();
             if (!file_exists($target_dir . "foto.jpg")) {
                 $fileNewName = "foto";
+            }else{
+                //sebaaaaaaaaaaaaaaaaaaaaa 
+                $fileNewName = "foto1";
             }      
             $folderPath = $target_dir;
             $imageType = $sourceProperties[2];        

@@ -19,6 +19,7 @@ class LoginController extends SecuredController{
     }
 
     function ShowHome($error){
+        //var_dump($_SESSION);
         if(!empty($_SESSION['email'])) {
             if($_SESSION['nivel'] == '0') {
                 $this->inicioView->ShowHomeCiudadano($error); 
@@ -45,6 +46,7 @@ class LoginController extends SecuredController{
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
+                print_r($nombreUsuario);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
                 $_SESSION['nivel'] = $usuarioDB->nivel;
@@ -80,8 +82,10 @@ class LoginController extends SecuredController{
     }
 
     function misReportes(){
+        
         $this->haySesion();
-        $reportes = $this->usuarioModel->getReportesCiudadano($_SESSION['idciudadano']);
+        $idu = (int) $_SESSION['idciudadano'];
+        $reportes = $this->usuarioModel->getReportesCiudadano($idu);
         $this->loginView->showReportes($reportes); 
     }
 

@@ -24,7 +24,10 @@
                             <td>{$reporte->ubicacion}</td>
                             <td>{$reporte->fecha_denuncia}</td>
                             {if $reporte->fecha_finalizacion == null}
-                                <td class=""><a href="finalizarDenuncia/{$reporte->iddenuncia}">Confirmar Recolección</a></td>                                                              
+                                <td class=""><a href="finalizarDenuncia/{$reporte->iddenuncia}">Confirmar Recolección</a></td>
+                            {* agregado por seba *}
+                            {else}
+                                <td class="bg-success text-white">{$reporte->fecha_finalizacion}</td>                                                              
                             {/if}
                             <td><button type="button" data-id="{$reporte->iddenuncia}" class="btn btn-outline-info verDenuncia"><i class="fa fa-search"></i></button></td>                            
                         </tr>
