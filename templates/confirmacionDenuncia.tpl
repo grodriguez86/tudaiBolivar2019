@@ -6,32 +6,52 @@
             <div class="card-body bg-secondary">
                 <form action="{$pagina}" method="post" enctype="multipart/form-data">                                
                     <div class="row">
-                        <div class="col-md-6">                    
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" class="font-weight-bold">Ciudadano: {$ciudadano}</label>                        
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" class="font-weight-bold">Número: {$registro->iddenuncia}</label>                        
-                            </div>
-                            <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Ubicacion: <span id="ubicacion">{$registro->ubicacion}</span></label>                        
-                            </div>
-                            <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Latitud: <span id="latitud">{$registro->latitud}</span></label>                        
-                            </div>
-                            <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Longitud: <span id="longitud">{$registro->longitud}</span></label>                        
-                            </div>
-                            <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Fecha: {$registro->fecha_denuncia}</label>                        
+                        <div class="col-md-4">
+                            <div class="col-md-6">                    
+                                {if $nivel == 1}
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Responsable: {$ciudadano}</label>                        
+                                    </div>
+                                {else}
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Ciudadano: {$ciudadano}</label>                        
+                                    </div>
+                                {/if}
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="font-weight-bold">Número: {$registro->iddenuncia}</label>                        
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Ubicacion: <span id="ubicacion">{$registro->ubicacion}</span></label>                        
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Latitud: <span id="latitud">{$registro->latitud}</span></label>                        
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Longitud: <span id="longitud">{$registro->longitud}</span></label>                        
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Fecha: {$registro->fecha_denuncia}</label>                        
+                                </div>
+                                <div class="form-group">
+                                        <label for="exampleInputPassword1" class="font-weight-bold">Fecha Finalizacion: {$registro->fecha_finalizacion}</label>                        
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="col-md-12 ">
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="col-md-12 ">
+                            </div>
+                            {if $registro->fecha_finalizacion != null}
+                                <div class="col-md-12 mt-2">
+                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="col-md-12 ">
+                                </div>
+                            {/if}
                         </div>
-                        <div class="col-md-3">
-                            <div id="map" class="fondoMapa">
+                        <div class="col-md-4">
+                                <div id="map" class="fondoMapa">
                         </div>
+                            
+                            
                     </div>
                     <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Volver</button>
                 </form>

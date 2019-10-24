@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2019 a las 16:11:03
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Servidor: localhost:3306
+-- Tiempo de generación: 23-10-2019 a las 10:44:37
+-- Versión del servidor: 5.7.27-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.19-0ubuntu0.18.04.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `trashout`
+-- Base de datos: `relaciones`
 --
 
 -- --------------------------------------------------------
@@ -51,13 +49,6 @@ CREATE TABLE `ciudadano` (
   `idlocalidad` int(11) NOT NULL,
   `mail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `ciudadano`
---
-
-INSERT INTO `ciudadano` (`idciudadano`, `dni`, `apellido`, `nombre`, `calle`, `numero`, `piso`, `dtp`, `idlocalidad`, `mail`) VALUES
-(3, 12313, 'asdas', 'asdasd', 'ssdfds', 321321, '', '', 1, 'usuario@com');
 
 -- --------------------------------------------------------
 
@@ -113,13 +104,6 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`mail`, `clave`, `nivel`) VALUES
-('usuario@com', '$2y$10$aCLjs5HvgQLkC.v3vPVPRez0tViQpJS.jYnF8D7CJv433s7.m.aB.', 0);
-
---
 -- Índices para tablas volcadas
 --
 
@@ -135,25 +119,33 @@ ALTER TABLE `cargo`
 ALTER TABLE `ciudadano`
   ADD PRIMARY KEY (`idciudadano`,`dni`),
   ADD UNIQUE KEY `dni` (`dni`),
-  ADD UNIQUE KEY `mail` (`mail`);
+  ADD UNIQUE KEY `mail` (`mail`),
+  ADD KEY `idlocalidad` (`idlocalidad`),
+  ADD KEY `mail_2` (`mail`);
 
 --
 -- Indices de la tabla `cuadrilla`
 --
 ALTER TABLE `cuadrilla`
-  ADD PRIMARY KEY (`idcuadrilla`);
+  ADD PRIMARY KEY (`idcuadrilla`),
+  ADD KEY `idcargo` (`idcargo`),
+  ADD KEY `idciudadano` (`idciudadano`);
 
 --
 -- Indices de la tabla `denuncia`
 --
 ALTER TABLE `denuncia`
-  ADD PRIMARY KEY (`iddenuncia`,`idciudadano`,`idcuadrilla`);
+  ADD PRIMARY KEY (`iddenuncia`,`idciudadano`,`idcuadrilla`),
+  ADD KEY `idlocalidad` (`idlocalidad`),
+  ADD KEY `idcuadrilla` (`idcuadrilla`),
+  ADD KEY `idciudadano` (`idciudadano`);
 
 --
 -- Indices de la tabla `localidad`
 --
 ALTER TABLE `localidad`
-  ADD PRIMARY KEY (`idlocalidad`);
+  ADD PRIMARY KEY (`idlocalidad`),
+  ADD KEY `idlocalidad` (`idlocalidad`);
 
 --
 -- Indices de la tabla `usuario`
@@ -170,31 +162,51 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `cargo`
   MODIFY `idcargo` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `ciudadano`
 --
 ALTER TABLE `ciudadano`
   MODIFY `idciudadano` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT de la tabla `cuadrilla`
 --
 ALTER TABLE `cuadrilla`
   MODIFY `idcuadrilla` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `denuncia`
 --
 ALTER TABLE `denuncia`
   MODIFY `iddenuncia` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `localidad`
 --
 ALTER TABLE `localidad`
   MODIFY `idlocalidad` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `ciudadano`
+--
+ALTER TABLE `ciudadano`
+  ADD CONSTRAINT `ciudadano_ibfk_1` FOREIGN KEY (`idlocalidad`) REFERENCES `localidad` (`idlocalidad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ciudadano_ibfk_2` FOREIGN KEY (`mail`) REFERENCES `usuario` (`mail`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `cuadrilla`
+--
+ALTER TABLE `cuadrilla`
+  ADD CONSTRAINT `cuadrilla_ibfk_1` FOREIGN KEY (`idcargo`) REFERENCES `cargo` (`idcargo`),
+  ADD CONSTRAINT `cuadrilla_ibfk_2` FOREIGN KEY (`idciudadano`) REFERENCES `ciudadano` (`idciudadano`);
+
+--
+-- Filtros para la tabla `denuncia`
+--
+ALTER TABLE `denuncia`
+  ADD CONSTRAINT `denuncia_ibfk_1` FOREIGN KEY (`idlocalidad`) REFERENCES `localidad` (`idlocalidad`),
+  ADD CONSTRAINT `denuncia_ibfk_2` FOREIGN KEY (`idcuadrilla`) REFERENCES `cuadrilla` (`idcuadrilla`),
+  ADD CONSTRAINT `denuncia_ibfk_3` FOREIGN KEY (`idciudadano`) REFERENCES `ciudadano` (`idciudadano`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

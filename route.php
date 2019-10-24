@@ -57,6 +57,10 @@
       $controller = new EjemploController();
       $controller->finalizarDenuncia($partesUrl[VALOR1]);
     break;
+    case 'finalizarDenunciaPunto':
+      $controller = new EjemploController();
+      $controller->finalizarDenunciaPunto();
+    break;
     case 'denunciaPunto':
       $controller = new EjemploController();
       $controller->mostrarDenuncia('punto');
