@@ -6,8 +6,7 @@
             <div class="card-body bg-secondary">
                 <form action="finalizarDenunciaPunto" method="post" enctype="multipart/form-data">                                
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="col-md-6">                    
+                        <div class="col-12 col-md-4 col-xl-4">
                             <div class="form-group">
                                 <label for="exampleInputPassword1" class="font-weight-bold">Responsable: {$ciudadano}</label>                        
                             </div>
@@ -16,57 +15,56 @@
                                 <input type="hidden" class="form-control" id="denunciaid" name="denunciaid" value={$registro->iddenuncia}>                       
                             </div>
                             <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Ubicacion: <span id="ubicacion">{$registro->ubicacion}</span></label>                        
+                                <label for="exampleInputPassword1" class="font-weight-bold">Ubicacion: <span id="ubicacion">{$registro->ubicacion}</span></label>                        
                             </div>
                             <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Latitud: <span id="latitud">{$registro->latitud}</span></label>                        
+                                <label for="exampleInputPassword1" class="font-weight-bold">Latitud: <span id="latitud">{$registro->latitud}</span></label>                        
                             </div>
                             <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Longitud: <span id="longitud">{$registro->longitud}</span></label>                        
+                                <label for="exampleInputPassword1" class="font-weight-bold">Longitud: <span id="longitud">{$registro->longitud}</span></label>                        
                             </div>
                             <div class="form-group">
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Fecha: {$registro->fecha_denuncia}</label>                        
+                                <label for="exampleInputPassword1" class="font-weight-bold">Fecha: {$registro->fecha_denuncia}</label>                        
                             </div>
                             <div class="form-group">
-                                    <label>Fecha Finalizacion: </label>
-                                    <input type="date" name="fechafin" class="font-weight-bold">                        
+                                <label>Fecha Finalizacion: </label>
+                                <input type="date" name="fechafin" class="font-weight-bold">                        
                             </div>
-                        </div>
                         </div>                    
-                        <div class="col-md-4">
-                            <div class="col-md-12">
-                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="col-md-12 ">
+                        <div class="col-12 col-md-4 col-xl-3">
+                            <div class="card">
+                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="card-img-top" alt="...">
+                                {* <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div> *}
                             </div>
                             {if $registro->fecha_finalizacion != null}
-                                <div class="col-md-12">
-                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="col-md-12 ">
+                                <div class="card">
+                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="card-img-top" alt="...">
+                                    {* <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div> *}
                                 </div>
                             {/if}
-                                
-
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-4 col-xl-5">
                             <div id="map" class="fondoMapa">
                         </div>
                     </div>
-                    
-                    <div class="col col-xl-12">
+                    <div class="col-12 col-xl-12">
                         <div class="form-group">
                             <label for="exampleFormControlFile1" class="font-weight-bold">Adjuntar imagen de la basura</label>
                             <input type="file" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
                         </div>
                     </div>
-                    <div class="col col-xl-12">
+                    <div class="col-12 col-xl-12">
                         {* <a href="misReportes" type="submit" class="btn btn-primary">Volver</a> *}
                         {* <button id="btnConfDenuncia" type="submit" class="btn btn-primary">Finalizar Denuncia</button> *}
                         <button type="submit" class="btn btn-primary">Finalizar Denuncia</button>
                     </div>
                 </form>
-                
-                <div class= "row">
-                    <div class="col col-xl-12">
-                        <a href="misReportes" type="submit" class="btn btn-primary">Volver</a>
-                    </div>
+                <div class="col-12 col-xl-12 mt-2">
+                    <a href="misReportes" type="submit" class="btn btn-primary btn-block">Volver a mis reportes</a>
                 </div>
 
             </div>

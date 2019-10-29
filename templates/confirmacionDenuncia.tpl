@@ -6,8 +6,8 @@
             <div class="card-body bg-secondary">
                 <form action="{$pagina}" method="post" enctype="multipart/form-data">                                
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="col-md-6">                    
+                        <div class="col-12 col-md-4 col-xl-4">
+                            {* <div class="col-md-6">                     *}
                                 {if $nivel == 1}
                                     <div class="form-group">
                                         <label for="exampleInputPassword1" class="font-weight-bold">Responsable: {$ciudadano}</label>                        
@@ -35,26 +35,39 @@
                                 <div class="form-group">
                                         <label for="exampleInputPassword1" class="font-weight-bold">Fecha Finalizacion: {$registro->fecha_finalizacion}</label>                        
                                 </div>
-                            </div>
+                            {* </div> *}
                         </div>
-                        <div class="col-md-4">
-                            <div class="col-md-12">
-                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="col-md-12 ">
+                        <div class="col-12 col-md-4 col-xl-3">
+                            <div class="card mb-1">
+                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="card-img-top" alt="...">
+                            {* <div class="card-body">
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                </div> *}
                             </div>
+                            {* <div class="col-md-12">
+                                <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="col-md-12 ">
+                            </div> *}
                             {if $registro->fecha_finalizacion != null}
-                                <div class="col-md-12 mt-2">
-                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="col-md-12 ">
+                                <div class="card">
+                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="card-img-top" alt="...">
+                                {* <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    </div> *}
                                 </div>
+                                {* <div class="col-md-12 mt-2">
+                                    <img src="images/denuncia/{$registro->iddenuncia}/foto1.jpg" class="col-md-12 ">
+                                </div> *}
                             {/if}
                         </div>
-                        <div class="col-md-4">
-                                <div id="map" class="fondoMapa">
-                        </div>
-                            
-                            
+                        <div class="col-12 col-md-4 col-xl-5">
+                            <div id="map" class="fondoMapa">
+                        </div>  
                     </div>
-                    <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Volver</button>
+                    {* <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Volver</button> *}
                 </form>
+                <div class="col col-xl-12 mt-2">
+                    <a href="misReportes" type="submit" class="btn btn-primary btn-block">Volver a mis reportes</a>
+                </div>
             </div>
         </div>
     </div>
