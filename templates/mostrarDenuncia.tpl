@@ -9,7 +9,9 @@
                 Denunciar persona tirando basura
             {/if}
             </div>
-            <div id="map" class="fondoMapa">
+            <div class="col-12">
+                <div id="map" class="fondoMapa">
+                </div>
             </div>
             <div class="card-body bg-secondary">
                 <form action="grabarDenunciaPunto" method="post" enctype="multipart/form-data">                                

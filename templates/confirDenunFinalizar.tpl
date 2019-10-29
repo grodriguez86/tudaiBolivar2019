@@ -48,7 +48,7 @@
                             {/if}
                         </div>
                         <div class="col-12 col-md-4 col-xl-5">
-                            <div id="map" class="fondoMapa">
+                            <div id="map" class="fondoMapa"></div>
                         </div>
                     </div>
                     <div class="col-12 col-xl-12">

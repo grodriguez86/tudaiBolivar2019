@@ -60,7 +60,7 @@
                             {/if}
                         </div>
                         <div class="col-12 col-md-4 col-xl-5">
-                            <div id="map" class="fondoMapa">
+                            <div id="map" class="fondoMapa"></div>
                         </div>  
                     </div>
                     {* <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Volver</button> *}
