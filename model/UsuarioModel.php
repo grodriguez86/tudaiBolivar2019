@@ -36,6 +36,7 @@ class UsuarioModel extends Model {
 
 
     public function getReportesCiudadano($idciudadano){
+        print_r($_SESSION['nivel']);
         if ($_SESSION['nivel'] == 1) {
             $sentencia = $this->conectarBaseDeDatos->prepare("SELECT * FROM denuncia");
         }
