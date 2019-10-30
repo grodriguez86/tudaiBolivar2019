@@ -70,9 +70,9 @@
 
 .fondoMapa {
     width: 100%;
-    height: 400px;
-    margin: 5%;
-    width: 90%;
+    height: 100%;
+    /* margin: 5%; */
+    width: 100%;
     border: 2vh solid gray;
     border-radius: 2vh;
 }
@@ -86,6 +86,10 @@
 }
 
 @media (max-width: 375px) {
+    .fondoMapa {
+        height: 40vh;
+        margin: 3% 0 2% 0;
+    }
     /* .contenedorMapa {
         height: 50%;
     } */
@@ -113,6 +117,10 @@
 }
 
 @media (min-width: 376px) and (max-width: 426px) {
+    .fondoMapa {
+        height: 40vh;
+        margin: 3% 0 2% 0;
+    }
     /* .contenedorMapa {
         height: 50%;
     } */
@@ -142,6 +150,10 @@
     /* .contenedorMapa {
         height: 100%;
     } */
+    .fondoMapa {
+        height: 40vh;
+        margin: 3% 0 2% 0;
+    }
     .homeCiudadano {
         height: 83vh;
         background-color: lightgray;
@@ -168,6 +180,10 @@
     /* .contenedorMapa {
         height: 100%;
     } */
+    .fondoMapa {
+        height: 40vh;
+        margin: 0 0 2% 0;
+    }
     .homeCiudadano {
         height: 81vh;
         background-color: lightgray;
@@ -195,6 +211,10 @@
     /* .contenedorMapa {
         height: 100%;
     } */
+    .fondoMapa {
+        height: 40vh;
+        margin: 0 0 2% 0;
+    }
     .homeCiudadano {
         height: 81vh;
         background-color: lightgray;

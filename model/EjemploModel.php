@@ -32,5 +32,13 @@ class EjemploModel extends Model{
       $this->loginView->showReportes($reportes); 
       die();
   }
+
+  //modificar la denuncia para finalizar agregando la fecha de finalizacion
+  
+  public function finalizarDenunciaPunto($id,$fechafin){
+    $sentencia = $this->conectarBaseDeDatos->prepare("UPDATE denuncia SET fecha_finalizacion = ? WHERE iddenuncia = ?");
+    $sentencia->execute(array($fechafin,$id));
+    
+  }
   
 } 

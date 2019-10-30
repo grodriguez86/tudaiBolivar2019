@@ -52,5 +52,11 @@ class UsuarioModel extends Model {
         $sentencia->fetchAll(PDO::FETCH_OBJ);
         print_r($sentencia);
     }
+
+    public function getNivel($email){
+        $sentencia = $this->conectarBaseDeDatos->prepare("SELECT nivel FROM usuario WHERE mail = ?");
+        $sentencia->execute(array($email));
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
 }
 ?>
