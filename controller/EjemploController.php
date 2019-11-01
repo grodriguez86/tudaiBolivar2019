@@ -85,10 +85,10 @@ class EjemploController extends SecuredController{
         $this->haySesion();
         $denunciaid = $_POST["denunciaid"];
         $fechafin = $_POST["fechafin"];
-        $imagen = $_FILES["fileToUpload"]["name"];
+        $imagen = $_FILES["fileToUpload"]["name"];        
         $this->ejemploModel->finalizarDenunciaPunto($denunciaid, $fechafin);
         // subir imagen
-        $this->uploadFile("denuncia",$denunciaid,"punto");
+        $this->uploadFile("denuncia",$denunciaid,"finalizar");
         header("Location: finalizarDenuncia/".$denunciaid);
         die(); 
     }
@@ -115,6 +115,11 @@ class EjemploController extends SecuredController{
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // verificar tipo denuncia
+        $fileNewName = "foto";
+        if ($tipo =="finalizar"){
+            $tipo=="punto";
+            $fileNewName = "foto1";
+        }
         if($tipo=="punto"){
             // Check if image file is a actual image or fake image
             if(isset($_POST["submit"])) {
@@ -150,14 +155,7 @@ class EjemploController extends SecuredController{
             } else {      
                 $file = $_FILES['fileToUpload']['tmp_name']; 
                 $sourceProperties = getimagesize($file);
-                $ext = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $fileNewName = time();
-                if (!file_exists($target_dir . "foto.jpg")) {
-                    $fileNewName = "foto";
-                }else{
-                    //sebaaaaaaaaaaaaaaaaaaaaa 
-                    $fileNewName = "foto1";
-                }      
+                $ext = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);                      
                 $folderPath = $target_dir;
                 $imageType = $sourceProperties[2];        
                 //Modificar Imagen        
@@ -184,8 +182,7 @@ class EjemploController extends SecuredController{
                         echo "ERROR-Tipo de imagen invalida.";
                         exit;
                         break;
-                }
-                
+                }                
             }
         }
         else{
@@ -219,13 +216,7 @@ class EjemploController extends SecuredController{
             } else {      
                 $file = $_FILES['fileToUpload']['tmp_name']; 
                 $ext = pathinfo($_FILES['fileToUpload']['name'], PATHINFO_EXTENSION);
-                $fileNewName = time();
-                if (!file_exists($target_dir . "video.mp4")) {
-                    $fileNewName = "video";
-                }else{
-                    //sebaaaaaaaaaaaaaaaaaaaaa 
-                    $fileNewName = "video1";
-                }      
+                $fileNewName = "video";
                 $folderPath = $target_dir;
                 if(move_uploaded_file($file, $target_dir.$fileNewName.".mp4"))
                 {
