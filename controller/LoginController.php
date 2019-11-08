@@ -111,6 +111,15 @@ class LoginController extends SecuredController{
             echo 'ERROR';
         }
     }
+
+    function sendMail($dest,$asu,$men){
+        $destinatario = $dest;
+        $asunto = $asu;
+        $mensaje = $men;
+        $headers = "From: info@trashout.com" . "\r\n";
+
+        mail($destinatario,$asunto,$mensaje,$headers);
+    }
 }
 
 ?>
