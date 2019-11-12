@@ -60,7 +60,13 @@ class EjemploController extends SecuredController{
 
 
     function mostrarDenuncia($tipoDenuncia) {
-        $this->ejemploView->mostrarDenuncia($tipoDenuncia);
+        $nivel = $_SESSION['nivel'];
+        $persona = $_SESSION['nombre'];
+        if ($nivel == 0 && !$persona == 0) { //permite que solo ingrese un ciudadano nivel 0
+            $this->ejemploView->mostrarDenuncia($tipoDenuncia);
+        } else {
+            header("Location: inicio");
+        }
     }
 
     public function grabarDenunciaPunto(){

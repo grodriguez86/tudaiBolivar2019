@@ -46,7 +46,7 @@ class LoginController extends SecuredController{
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
-                print_r($nombreUsuario);
+                // print_r($nombreUsuario);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
                 $_SESSION['nivel'] = $usuarioDB->nivel;
