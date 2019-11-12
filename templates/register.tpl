@@ -68,6 +68,10 @@
               <div class="" id="">
                 <div class="row" id="divContenedorRegisterRespuesta"></div>
               </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input terminosCheck" id="exampleCheck1" required>
+                <label class="form-check-label" for="exampleCheck1">Acepto los <a href="terminos" class="text-blue font-weight-bold" target="_blank">términos y condiciones</a></label>
+              </div>
               <div class="row">
                 <div class="col-md-12 pl-2 pr-2">
                   <button class="col-md-12 btn fondoAzul text-white" id="registerBtn" type="button" name="button">Empezar a usar TrashOut </button>

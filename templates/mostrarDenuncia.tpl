@@ -40,10 +40,6 @@
                         {/if}
                     </div>
                     <hr>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                        <label class="form-check-label" for="exampleCheck1">Acepto los <a href="terminos" class="text-white font-weight-bold">términos y condiciones</a></label>
-                    </div>
                     <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
