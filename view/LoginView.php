@@ -17,8 +17,9 @@ class LoginView extends View {
         $this->smarty->display('templates/register.tpl');
     }
 
-    public function showReportes($reportes) {
+    public function showReportes($reportes, $denuncias) {
         $this->smarty->assign("reportes", $reportes);
+        $this->smarty->assign("denuncias", $denuncias);
         $this->smarty->display('templates/reportes.tpl');
     }
 }

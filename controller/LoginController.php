@@ -22,7 +22,17 @@ class LoginController extends SecuredController{
         //var_dump($_SESSION);
         if(!empty($_SESSION['email'])) {
             if($_SESSION['nivel'] == '0') {
-                $this->inicioView->ShowHomeCiudadano($error); 
+                $idu = (int) $_SESSION['idciudadano'];
+                $reportes = $this->usuarioModel->getReportesCiudadano($idu);
+                $denuncias = 0;
+                foreach ($reportes as $key) {
+                    if ($key->fecha_finalizacion == null) {
+                        $denuncias ++;
+                        // var_dump($denuncias);
+                    }
+
+                }
+                $this->inicioView->ShowHomeCiudadano($error,$denuncias); 
             }
             if ($_SESSION['nivel'] == '1') {
                 $this->misReportes();
@@ -86,7 +96,15 @@ class LoginController extends SecuredController{
         $this->haySesion();
         $idu = (int) $_SESSION['idciudadano'];
         $reportes = $this->usuarioModel->getReportesCiudadano($idu);
-        $this->loginView->showReportes($reportes); 
+        $denuncias = 0;
+        foreach ($reportes as $key) {
+            if ($key->fecha_finalizacion == null) {
+                $denuncias ++;
+                // var_dump($denuncias);
+            }
+
+        }
+        $this->loginView->showReportes($reportes, $denuncias); 
     }
 
     function verifyRegister(){

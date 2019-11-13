@@ -17,11 +17,12 @@ class InicioView extends View {
         $this->smarty->display("templates/home.tpl");
     }
 
-    public function ShowHomeCiudadano($mensaje) {
+    public function ShowHomeCiudadano($mensaje, $denuncias) {
         if(!isset($mensaje)) {
             $mensaje = "";
         }
         $this->smarty->assign("error", $mensaje);
+        $this->smarty->assign("denuncias", $denuncias);
         $this->smarty->display("templates/homeCiudadano.tpl");
     }
         
