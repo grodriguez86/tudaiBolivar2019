@@ -3,16 +3,19 @@
 require_once 'controller/SecuredController.php';
 require_once 'model/EjemploModel.php';
 require_once 'view/EjemploView.php';
+require_once 'model/UsuarioModel.php';
 
 class EjemploController extends SecuredController{
 
     private $ejemploView;
     private $ejemploModel;
+    private $usuarioModel;
 
     public function __construct(){
         parent::__construct();
         $this->ejemploView = new EjemploView();
         $this->ejemploModel = new ejemploModel();
+        $this->usuarioModel = new UsuarioModel();
     } 
 
     public function denuncia(){
@@ -62,7 +65,18 @@ class EjemploController extends SecuredController{
     function mostrarDenuncia($tipoDenuncia) {
         $nivel = $_SESSION['nivel'];
         $persona = $_SESSION['nombre'];
-        if ($nivel == 0 && !$persona == 0) { //permite que solo ingrese un ciudadano nivel 0
+        // es para controllar la URL denunciarPunto sin no cumple con la condicion de ser menor a 5 denuncias por persona
+        $idu = (int) $_SESSION['idciudadano'];
+        $reportes = $this->usuarioModel->getReportesCiudadano($idu);
+        $denuncias = 0;
+        foreach ($reportes as $key) {
+            if ($key->fecha_finalizacion == null) {
+                $denuncias ++;
+            }
+
+        }
+
+        if ($nivel == 0 && !$persona == 0 && $denuncias < 5) { //permite que solo ingrese un ciudadano nivel 0
             $this->ejemploView->mostrarDenuncia($tipoDenuncia);
         } else {
             header("Location: inicio");
