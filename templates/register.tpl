@@ -63,6 +63,7 @@
                     <div class="form-group">
                         <input type="password" id="password" class="form-control" placeholder="Contraseña *" required>
                     </div>
+                    <input name="codigo" id="codigo" type="hidden" value={$codigo}>
                   </form>   
               </div>
               <div class="" id="">

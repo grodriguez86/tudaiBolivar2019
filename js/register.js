@@ -24,6 +24,7 @@ $(document).ready(function() {
         datos.piso = document.querySelector('#piso').value;
         datos.password = document.querySelector('#password').value;
         datos.localidad = localidad;
+        datos.codigo = document.querySelector('#codigo').value;
         $.ajax({
             type: 'POST',
             url: 'verifyRegister',

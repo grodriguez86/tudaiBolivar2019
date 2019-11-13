@@ -12,7 +12,8 @@ class LoginView extends View {
         $this->smarty->display('templates/login.tpl');
     }
 
-    public function mostrarRegister($correo) {
+    public function mostrarRegister($correo,$codigo) {
+        $this->smarty->assign("codigo", $codigo);
         $this->smarty->assign("correo", $correo);
         $this->smarty->display('templates/register.tpl');
     }

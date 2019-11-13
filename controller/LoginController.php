@@ -77,7 +77,8 @@ class LoginController extends SecuredController{
             $this->inicioView->ShowHome('Correo ya registrado');
         } 
         else{
-            $this->loginView->mostrarRegister($correo);        
+            $codigo = rand(10000,50000);
+            $this->loginView->mostrarRegister($correo,$codigo);        
         }
     }
 
@@ -100,9 +101,12 @@ class LoginController extends SecuredController{
         $numeroDep = $_POST['nroDep'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $localidad = $_POST['localidad'];
+        $codigo = $_POST['codigo'];
+        
+        
 
         $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
-        $usuario = $this->usuarioModel->registerUser($correo,$password);
+        $usuario = $this->usuarioModel->registerUser($correo,$password,$codigo);
 
         if(($ciudadano)){
             echo 'OK';
@@ -111,6 +115,26 @@ class LoginController extends SecuredController{
             echo 'ERROR';
         }
     }
+
+    public function confirmarMail() {
+        $correo = $_GET['correo'];
+        $codigo = $_GET['codigo'];
+        $usuario = $this->usuarioModel->getUsuario($correo);
+        if ($codigo == $usuario->codigo){
+            if ($usuario->estado == "SI"){
+                header("Location: " . HOME);
+            }else{
+                $this->usuarioModel->updateUser($correo);
+            }
+        }else{
+            echo 'verificacion incorrecta';
+        }
+        
+      }
+
+
+
+
 }
 
 ?>

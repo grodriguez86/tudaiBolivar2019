@@ -29,11 +29,15 @@ class UsuarioModel extends Model {
         return $this->conectarBaseDeDatos->lastInsertId();
     }
 
-    public function registerUser($correo,$password){
-        $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO usuario (mail,clave,nivel) VALUES (?,?,?)");
-        $sentencia->execute(array($correo,$password,0));
+    public function registerUser($correo,$password,$codigo){
+        $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO usuario (mail,clave,nivel,codigo) VALUES (?,?,?,?)");
+        $sentencia->execute(array($correo,$password,0,$codigo));
     }
 
+    public function updateUser($correo){
+        $sentencia = $this->conectarBaseDeDatos->prepare("UPDATE usuario SET estado='SI' WHERE mail= ?");
+        $sentencia->execute(array($correo));
+    }
 
     public function getReportesCiudadano($idciudadano){
         if ($_SESSION['nivel'] == 1) {

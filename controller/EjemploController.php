@@ -229,6 +229,8 @@ class EjemploController extends SecuredController{
         $files = scandir($elDir);
         return $files;
       }
+
+      
     
 
 } 
