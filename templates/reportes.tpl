@@ -1,7 +1,15 @@
 {include file="header.tpl" }
 <div class="row fondoAzul">
+    {if $nivel != 1 }
+        <div class = "col-12 text-center">
+            {* <span class="d-block p-2 bg-dark text-white">
+                <h1>Denuncias {$denuncias}/5</h1>
+            </span> *}
+            <div class="shadow-lg p-3 mt-3 bg-white rounded"><h1>Denuncias {$denuncias}/5</h1></div>
+        </div>
+    {/if}
     <div class="col-12">
-        <div class="container-fluid row mt-5 table-responsive">
+        <div class="container-fluid row mt-3 table-responsive">
             <table class="table">
                 <thead class="thead-dark">
                     <tr>

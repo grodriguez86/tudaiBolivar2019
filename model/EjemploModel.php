@@ -22,9 +22,9 @@ class EjemploModel extends Model{
       return $sentencia->fetch(PDO::FETCH_OBJ);
     }
 
-    public function saveDenuncia($ubicacion, $latitud, $longitud, $idciudadano,$idlocalidad){
+    public function saveDenuncia($ubicacion, $latitud, $longitud, $idciudadano,$idlocalidad,$tipoDenuncia){
       $sentencia = $this->conectarBaseDeDatos->prepare("INSERT INTO denuncia (idciudadano,descripcion,ubicacion,idlocalidad,latitud,longitud,idcuadrilla) VALUES (?,?,?,?,?,?,?)");
-      $sentencia->execute(array($idciudadano,"",$ubicacion,$idlocalidad,$latitud,$longitud,"1"));
+      $sentencia->execute(array($idciudadano,$tipoDenuncia,$ubicacion,$idlocalidad,$latitud,$longitud,"1"));
       return $this->conectarBaseDeDatos->lastInsertId();
     }
 

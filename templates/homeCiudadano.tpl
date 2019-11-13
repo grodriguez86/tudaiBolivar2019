@@ -2,7 +2,14 @@
 <div class="row homeCiudadano justify-content-center align-items-center">
     <div class="col col-md-6 col-xl-5 divForm">
         <div class="row elemento1Max justify-content-center align-items-center text-center text-white">
-            
+            {if $denuncias >= 5}
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">LIMITE DE DENUNCIAS!</h4>
+                    <p>No se permiten hacer mas de {$denuncias} denuncias simultaneas.</p>
+                    <hr>
+                    <p class="mb-0">Hasta que en la cuadrilla no realice uno de sus tramites, no podra hacer mas denuncias.</p>
+                </div>
+            {else}
             <a class="btn btnDenunciaPunto" href="denunciaPunto">
                 <div class="col-12">
                     <div class="row m-0 elemento2Max justify-content-center align-items-center text-center text-white">
@@ -29,6 +36,7 @@
                     </div>
                 </div>
             </a>
+            {/if}
         </div>
     </div>
     

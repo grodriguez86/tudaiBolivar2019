@@ -22,7 +22,17 @@ class LoginController extends SecuredController{
         //var_dump($_SESSION);
         if(!empty($_SESSION['email'])) {
             if($_SESSION['nivel'] == '0') {
-                $this->inicioView->ShowHomeCiudadano($error); 
+                $idu = (int) $_SESSION['idciudadano'];
+                $reportes = $this->usuarioModel->getReportesCiudadano($idu);
+                $denuncias = 0;
+                foreach ($reportes as $key) {
+                    if ($key->fecha_finalizacion == null) {
+                        $denuncias ++;
+                        // var_dump($denuncias);
+                    }
+
+                }
+                $this->inicioView->ShowHomeCiudadano($error,$denuncias); 
             }
             if ($_SESSION['nivel'] == '1') {
                 $this->misReportes();
@@ -46,7 +56,7 @@ class LoginController extends SecuredController{
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
-                print_r($nombreUsuario);
+                // print_r($nombreUsuario);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
                 $_SESSION['nivel'] = $usuarioDB->nivel;
@@ -87,7 +97,15 @@ class LoginController extends SecuredController{
         $this->haySesion();
         $idu = (int) $_SESSION['idciudadano'];
         $reportes = $this->usuarioModel->getReportesCiudadano($idu);
-        $this->loginView->showReportes($reportes); 
+        $denuncias = 0;
+        foreach ($reportes as $key) {
+            if ($key->fecha_finalizacion == null) {
+                $denuncias ++;
+                // var_dump($denuncias);
+            }
+
+        }
+        $this->loginView->showReportes($reportes, $denuncias); 
     }
 
     function verifyRegister(){
@@ -135,6 +153,14 @@ class LoginController extends SecuredController{
 
 
 
+    function sendMail($dest,$asu,$men){
+        $destinatario = $dest;
+        $asunto = $asu;
+        $mensaje = $men;
+        $headers = "From: info@trashout.com" . "\r\n";
+
+        mail($destinatario,$asunto,$mensaje,$headers);
+    }
 }
 
 ?>

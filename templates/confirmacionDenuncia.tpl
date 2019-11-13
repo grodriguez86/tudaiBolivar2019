@@ -21,6 +21,9 @@
                                     <label for="exampleInputPassword1" class="font-weight-bold">Número: {$registro->iddenuncia}</label>                        
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1" class="font-weight-bold">Tipo: {$registro->descripcion}</label>                        
+                                </div>
+                                <div class="form-group">
                                         <label for="exampleInputPassword1" class="font-weight-bold">Ubicacion: <span id="ubicacion">{$registro->ubicacion}</span></label>                        
                                 </div>
                                 <div class="form-group">
@@ -39,7 +42,12 @@
                         </div>
                         <div class="col-12 col-md-4 col-xl-3">
                             <div class="card mb-1">
+                                {if $registro->descripcion eq 'punto'}
                                 <img src="images/denuncia/{$registro->iddenuncia}/foto.jpg" class="card-img-top" alt="...">
+                                {else}
+                                    <video src="images/denuncia/{$registro->iddenuncia}/video.mp4" type="video/mp4" height="240" controls></video>                                    
+                                {/if}
+                            
                             {* <div class="card-body">
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 </div> *}
@@ -60,7 +68,7 @@
                             {/if}
                         </div>
                         <div class="col-12 col-md-4 col-xl-5">
-                            <div id="map" class="fondoMapa">
+                            <div id="map" class="fondoMapa"></div>
                         </div>  
                     </div>
                     {* <button id="btnEnviarPunto" type="submit" class="btn btn-primary">Volver</button> *}
