@@ -17,6 +17,7 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
+
                     {foreach from=$reportes item=reporte}
                         <tr>
                             <td>{$reporte->iddenuncia}</td>
