@@ -33,6 +33,12 @@ class EjemploModel extends Model{
       die();
   }
 
+    function getCiudadano($id){
+      $sentencia = $this->conectarBaseDeDatos->prepare("SELECT mail FROM ciudadano WHERE idciudadano = ?");
+      $sentencia->execute(array($id));
+      return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+
   //modificar la denuncia para finalizar agregando la fecha de finalizacion
   
   public function finalizarDenunciaPunto($id,$fechafin){

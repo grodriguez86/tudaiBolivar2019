@@ -22,7 +22,17 @@ class LoginController extends SecuredController{
         //var_dump($_SESSION);
         if(!empty($_SESSION['email'])) {
             if($_SESSION['nivel'] == '0') {
-                $this->inicioView->ShowHomeCiudadano($error); 
+                $idu = (int) $_SESSION['idciudadano'];
+                $reportes = $this->usuarioModel->getReportesCiudadano($idu);
+                $denuncias = 0;
+                foreach ($reportes as $key) {
+                    if ($key->fecha_finalizacion == null) {
+                        $denuncias ++;
+                        // var_dump($denuncias);
+                    }
+
+                }
+                $this->inicioView->ShowHomeCiudadano($error,$denuncias); 
             }
             if ($_SESSION['nivel'] == '1') {
                 $this->misReportes();
@@ -46,7 +56,7 @@ class LoginController extends SecuredController{
             if(password_verify($contraseña, $usuarioDB->clave)) {
                 // session_start();
                 $nombreUsuario = $this->usuarioModel->getNombreUsuario($email);
-                print_r($nombreUsuario);
+                // print_r($nombreUsuario);
                 $_SESSION['nombre'] = $nombreUsuario->nombre;
                 $_SESSION['email'] = $nombreUsuario->mail;
                 $_SESSION['nivel'] = $usuarioDB->nivel;
@@ -77,7 +87,8 @@ class LoginController extends SecuredController{
             $this->inicioView->ShowHome('Correo ya registrado');
         } 
         else{
-            $this->loginView->mostrarRegister($correo);        
+            $codigo = rand(10000,50000);
+            $this->loginView->mostrarRegister($correo,$codigo);        
         }
     }
 
@@ -86,7 +97,15 @@ class LoginController extends SecuredController{
         $this->haySesion();
         $idu = (int) $_SESSION['idciudadano'];
         $reportes = $this->usuarioModel->getReportesCiudadano($idu);
-        $this->loginView->showReportes($reportes); 
+        $denuncias = 0;
+        foreach ($reportes as $key) {
+            if ($key->fecha_finalizacion == null) {
+                $denuncias ++;
+                // var_dump($denuncias);
+            }
+
+        }
+        $this->loginView->showReportes($reportes, $denuncias); 
     }
 
     function verifyRegister(){
@@ -100,17 +119,40 @@ class LoginController extends SecuredController{
         $numeroDep = $_POST['nroDep'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $localidad = $_POST['localidad'];
+        $codigo = $_POST['codigo'];
+        
+        
 
         $ciudadano = $this->usuarioModel->registerCiudadano($dni,$apellido,$nombre,$calle,$numero,$piso,$numeroDep,$localidad,$correo);
-        $usuario = $this->usuarioModel->registerUser($correo,$password);
+        $usuario = $this->usuarioModel->registerUser($correo,$password,$codigo);
 
         if(($ciudadano)){
+            $this->sendMail($correo,"Confirmacion Mail","Vaya a este enlace para confirmar mail www.trashout.ml/confirmarMail/".$correo."/".$codigo);
             echo 'OK';
         }
         else {
             echo 'ERROR';
         }
     }
+
+    public function confirmarMail() {
+        $correo = $_GET['correo'];
+        $codigo = $_GET['codigo'];
+        $usuario = $this->usuarioModel->getUsuario($correo);
+        if ($codigo == $usuario->codigo){
+            if ($usuario->estado == "SI"){
+                header("Location: " . HOME);
+            }else{
+                $this->usuarioModel->updateUser($correo);
+            }
+        }else{
+            echo 'verificacion incorrecta';
+        }
+        
+      }
+
+
+
 
     function sendMail($dest,$asu,$men){
         $destinatario = $dest;

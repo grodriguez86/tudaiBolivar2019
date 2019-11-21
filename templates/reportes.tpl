@@ -1,7 +1,23 @@
 {include file="header.tpl" }
 <div class="row fondoAzul">
+    {if $nivel != 1 }
+        <div class = "col-12 text-center">
+            {* <span class="d-block p-2 bg-dark text-white">
+                <h1>Denuncias {$denuncias}/5</h1>
+            </span> *}
+            <div class="shadow-lg p-3 mt-3 bg-white rounded"><h1>Denuncias {$denuncias}/5</h1></div>
+        </div>
+    {/if}
     <div class="col-12">
-        <div class="container-fluid row mt-5 table-responsive">
+        <div class="container-fluid row mt-3 table-responsive">
+            <div class="form-check mb-2">
+                <input class="form-check-input filtroReportes" name ="radio" type="radio" value="todas" id="defaultCheck1" checked>
+                <label class="form-check-label mr-4" for="defaultCheck1">Todas</label>
+                <input class="form-check-input filtroReportes" name ="radio" type="radio" value="finalizadas" id="defaultCheck1">
+                <label class="form-check-label mr-4" for="defaultCheck1">Finalizadas</label>
+                <input class="form-check-input filtroReportes" name ="radio" type="radio" value="pendientes" id="defaultCheck1">
+                <label class="form-check-label" for="defaultCheck1">Pendientes</label>
+            </div>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -14,7 +30,7 @@
                         <th scope="col">Ver</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white">
+                <tbody class="bg-white tabla">
                 {if $nivel == 1 }
                     {foreach from=$reportes item=reporte}
                         <tr>

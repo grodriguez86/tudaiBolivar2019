@@ -3,16 +3,19 @@
 require_once 'controller/SecuredController.php';
 require_once 'model/EjemploModel.php';
 require_once 'view/EjemploView.php';
+require_once 'model/UsuarioModel.php';
 
 class EjemploController extends SecuredController{
 
     private $ejemploView;
     private $ejemploModel;
+    private $usuarioModel;
 
     public function __construct(){
         parent::__construct();
         $this->ejemploView = new EjemploView();
         $this->ejemploModel = new ejemploModel();
+        $this->usuarioModel = new UsuarioModel();
     } 
 
     public function denuncia(){
@@ -25,6 +28,8 @@ class EjemploController extends SecuredController{
         $registro = $this->ejemploModel->getDenunciaID($id);
         $ciudadano = $_SESSION['nombre'];
         $nivel = $_SESSION['nivel'];
+        $persona = $this->ejemploModel->getCiudadano($registro->idciudadano);
+        $this->sendMail($persona->mail,"Denuncia realizada","Se ha confirmado la recoleccion de la denuncia Nº".$id);
         $this->ejemploView->confirmacionDenuncia($registro, $ciudadano, $pagina,$nivel);  
     }
 
@@ -60,7 +65,24 @@ class EjemploController extends SecuredController{
 
 
     function mostrarDenuncia($tipoDenuncia) {
-        $this->ejemploView->mostrarDenuncia($tipoDenuncia);
+        $nivel = $_SESSION['nivel'];
+        $persona = $_SESSION['nombre'];
+        // es para controllar la URL denunciarPunto sin no cumple con la condicion de ser menor a 5 denuncias por persona
+        $idu = (int) $_SESSION['idciudadano'];
+        $reportes = $this->usuarioModel->getReportesCiudadano($idu);
+        $denuncias = 0;
+        foreach ($reportes as $key) {
+            if ($key->fecha_finalizacion == null) {
+                $denuncias ++;
+            }
+
+        }
+
+        if ($nivel == 0 && !$persona == 0 && $denuncias < 5) { //permite que solo ingrese un ciudadano nivel 0
+            $this->ejemploView->mostrarDenuncia($tipoDenuncia);
+        } else {
+            header("Location: inicio");
+        }
     }
 
     public function grabarDenunciaPunto(){
@@ -78,6 +100,7 @@ class EjemploController extends SecuredController{
         $idDenuncia = $this->ejemploModel->saveDenuncia($ubicacion, $latitud, $longitud, $idciudadano,$idlocalidad,$tipoDenuncia);
         // subir imagen
         $this->uploadFile("denuncia",$idDenuncia,$tipoDenuncia);
+        $this->sendMail($_SESSION['email'],"Denuncia Trashout","Se ha realizado una denuncia");
     }
 
     //finalizar la denuncia
@@ -270,6 +293,17 @@ class EjemploController extends SecuredController{
         $files = scandir($elDir);
         return $files;
       }
+
+      function sendMail($dest,$asu,$men){
+        $destinatario = $dest;
+        $asunto = $asu;
+        $mensaje = $men;
+        $headers = "From: info@trashout.com" . "\r\n";
+
+        mail($destinatario,$asunto,$mensaje,$headers);
+    }
+
+      
     
 
 } 

@@ -93,6 +93,10 @@
       $controller = new EjemploController();
       $controller->mostrarTerminos();
     break;
+    case 'confirmarMail':
+      $controller = new LoginController();
+      $controller->confirmarMail($partesUrl[VALOR1],$partesUrl[VALOR2]);
+    break;
     default:
       $controller = new LoginController();
       $controller->ShowHome("");
