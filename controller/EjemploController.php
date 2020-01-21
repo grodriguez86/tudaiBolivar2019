@@ -114,8 +114,8 @@ class EjemploController extends SecuredController{
         $this->ejemploModel->finalizarDenunciaPunto($denunciaid, $fechafin);
         // subir imagen
         $this->uploadFile("denuncia",$denunciaid,"finalizar");
-        header("Location: finalizarDenuncia/".$denunciaid);
-        die(); 
+        //header("Location: finalizarDenuncia/".$denunciaid);
+        //die(); 
     }
 
     // subir imagen
@@ -142,7 +142,7 @@ class EjemploController extends SecuredController{
         // verificar tipo denuncia
         $fileNewName = "foto";
         if ($tipo =="finalizar"){
-            $tipo=="punto";
+            $tipo="punto";
             $fileNewName = "foto1";
         }
         if($tipo=="punto"){
@@ -209,6 +209,7 @@ class EjemploController extends SecuredController{
                         break;
                 }                
             }
+            
         }
         else{
             // Check if video file 
@@ -256,7 +257,7 @@ class EjemploController extends SecuredController{
             }
         }
         header("Location: ".HOME."confirmacionDenuncia/".$id."/inicio");
-        die();    
+        
       }
     
       public function borrarArchivo($tabla, $id, $archivo){

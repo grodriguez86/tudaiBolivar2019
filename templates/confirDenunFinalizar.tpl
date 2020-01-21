@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Fecha Finalizacion: </label>
-                                <input type="date" name="fechafin" class="font-weight-bold" min="{$registro->fecha_denuncia|date_format:"%D"}">                        
+                                <input type="date" name="fechafin" class="font-weight-bold" min="{$registro->fecha_denuncia|date_format:"%D"}" required>                        
                             </div>
                         </div>                    
                         <div class="col-12 col-md-4 col-xl-3">
