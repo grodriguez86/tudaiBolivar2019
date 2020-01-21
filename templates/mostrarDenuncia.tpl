@@ -37,6 +37,8 @@
                             <input type="file" accept="image/*" class="form-control-file btn  btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
                         {elseif $tipoDenuncia eq 'persona'}
                             <input type="file" accept="video/*"  class="form-control-file btn btn-outline-secondary" name="fileToUpload" id="fileToUpload" required>
+                            <input type="text" class="form-control" id="inputDominio" name="inputDominio" placeholder="Dominio" required>
+
                         {/if}
                     </div>
                     <hr>

@@ -88,6 +88,7 @@ class EjemploController extends SecuredController{
     public function grabarDenunciaPunto(){
         $this->haySesion();
         $ubicacion = $_POST["inputUbicacion"];
+        $dominio = $_POST["inputDominio"];
         $tipoDenuncia = $_POST["tipoDenuncia"];
         if($ubicacion==""){
             $ubicacion="Ubicacion actual por geolocalizacion";
@@ -97,7 +98,8 @@ class EjemploController extends SecuredController{
         $imagen = $_FILES["fileToUpload"]["name"];
         $idciudadano = $_SESSION['idciudadano'];
         $idlocalidad = $_SESSION['idlocalidad'];
-        $idDenuncia = $this->ejemploModel->saveDenuncia($ubicacion, $latitud, $longitud, $idciudadano,$idlocalidad,$tipoDenuncia);
+        $ubicacion_dominio = $ubicacion." - Dominio ".$dominio;
+        $idDenuncia = $this->ejemploModel->saveDenuncia($ubicacion_dominio, $latitud, $longitud, $idciudadano,$idlocalidad,$tipoDenuncia);
         // subir imagen
         $this->uploadFile("denuncia",$idDenuncia,$tipoDenuncia);
         $this->sendMail($_SESSION['email'],"Denuncia Trashout","Se ha realizado una denuncia");
